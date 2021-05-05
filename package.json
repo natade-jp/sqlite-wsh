@@ -1,0 +1,41 @@
+{
+	"name": "toolbox-wsh",
+	"version": "1.0.0",
+	"description": "Simple sqlite operations in WSH JScript.",
+	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/natade-jp/toolbox-wsh"
+	},
+	"license": "MIT",
+	"main": "./build/toolbox-wsh.js",
+	"keywords": [
+		"wsh",
+		"sqlite"
+	],
+	"directories": {
+		"src": "./src",
+		"build": "./build"
+	},
+	"scripts": {
+		"build": "node ./scripts/package.build.js",
+		"dts": "node ./scripts/package.dts.js",
+		"doc": "node ./scripts/package.doc.js",
+		"start": "node ./scripts/execExample.js"
+	},
+	"devDependencies": {
+		"@types/windows-script-host": "^5.8.3",
+		"esdoc": "^1.1.0",
+		"esdoc-standard-plugin": "^1.0.0",
+		"eslint": "^6.5.1",
+		"jsdoc": "^3.6.3",
+		"jsdoc-export-default-interop": "^0.3.1",
+		"mojijs": "^3.0.3",
+		"rollup": "^1.23.1",
+		"rollup-plugin-buble": "^0.19.8",
+		"rollup-plugin-uglify": "^6.0.3",
+		"rollup-plugin-uglify-es": "0.0.1",
+		"tsd-jsdoc": "^2.4.0"
+	},
+	"dependencies": {}
+}
