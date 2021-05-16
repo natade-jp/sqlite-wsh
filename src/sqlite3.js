@@ -113,6 +113,8 @@ class SQLite3Type {
 
 	/**
 	 * SQL用の型へ変換
+	 * - `SQL` の型情報を元に `SQL` 内への記載用データへ変換
+	 * 
 	 * @param {any} x
 	 * @returns {string}
 	 */
@@ -157,8 +159,7 @@ class SQLite3Type {
 		}
 		else if(this.normalized_type === "datetime") {
 			const date = new Date(x);
-			// @ts-ignore
-			return "\"" + date.toGMTString() + "\"";
+			return date.getTime().toString();
 		}
 		console.log("toSQLDataFromJSData:" + x);
 		return "null";
@@ -166,12 +167,63 @@ class SQLite3Type {
 
 	/**
 	 * JavaScript用の型へ変換
+	 * - 「`-json` で取得し `eval` で変換したデータ」から `SQL` の型情報を元に `JavaScript` の型へ変換
+	 * 
 	 * @param {any} x
-	 * @returns {string}
+	 * @returns {any}
 	 */
 	toJSDataFromSQLData(x) {
-
-
+		const js_type = System.typeOf(x);
+		if(this.normalized_type === "string") {
+			if(js_type === "string") {
+				return x;
+			}
+			else if(js_type === "object") {
+				return null;
+			}
+			else {
+				return x.toString();
+			}
+		}
+		else if((this.normalized_type === "numeric") || (this.normalized_type === "none")) {
+			if(js_type === "object") {
+				return null;
+			}
+			const number = Number.parseFloat(x);
+			if(Number.isFinite(number)) {
+				return number;
+			}
+			if(x.toString() === number.toString()) {
+				return number;
+			}
+			return x.toString();
+		}
+		else if(this.normalized_type === "int") {
+			if(js_type === "object") {
+				return null;
+			}
+			return Number.parseInt(x, 10);
+		}
+		else if(this.normalized_type === "real") {
+			if(js_type === "object") {
+				return null;
+			}
+			return Number.parseFloat(x);
+		}
+		else if(this.normalized_type === "blob") {
+			return {};
+		}
+		else if(this.normalized_type === "boolean") {
+			const number = Number.parseFloat(x);
+			return number !== 0;
+		}
+		else if(this.normalized_type === "datetime") {
+			/**
+			 * @type {string}
+			 */
+			const date = x.toString();
+			return new Date(date.replace(/\-/g, "/"));
+		}
 		return null;
 	}
 
@@ -232,6 +284,28 @@ class SQLite3IF {
 	}
 
 	/**
+	 * 型情報を用いてSQLiteから取得したデータを整形する
+	 * @param {string} sqlite_output_text
+	 * @returns {Object<string, any>[]}
+	 * @private
+	 */
+	normalizeSQLData(sqlite_output_text) {
+		/**
+		 * @type {Object<string, any>[]}
+		 */
+		const obj_data = JSON.parse(sqlite_output_text);
+		for(let i = 0; i < obj_data.length; i++) {
+			const tgt = obj_data[i];
+			for(const key in tgt) {
+				if(key in this.type_data) {
+					tgt[key] = this.type_data[key].toJSDataFromSQLData(tgt[key]);
+				}
+			}
+		}
+		return obj_data;
+	}
+
+	/**
 	 * 型情報を取得する
 	 * @return {Object<string, SQLite3TypeData>}
 	 */
@@ -274,7 +348,7 @@ class SQLite3IF {
 	/**
 	 * レコードを調べる
 	 * @param {any} target_record
-	 * @returns {any} 
+	 * @returns {Object<string, any>[]}
 	 */
 	find(target_record) {
 		if(target_record === undefined) {
@@ -288,8 +362,9 @@ class SQLite3IF {
 				console.log("find," + this.table_name);
 				return null;
 			}
-			return JSON.parse(sql_data);
+			return this.normalizeSQLData(sql_data);
 		}
+		return [];
 	}
 
 	/**

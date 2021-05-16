@@ -48,9 +48,9 @@ declare class SQLite3IF {
     /**
      * レコードを調べる
      * @param {any} target_record
-     * @returns {any}
+     * @returns {Object<string, any>[]}
      */
-    find(target_record: any): any;
+    find(target_record: any): Object<string, any>[];
     /**
      * レコードを削除する
      * @param {any} target_record
