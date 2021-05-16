@@ -114,6 +114,8 @@ class SQLite3Type {
 	/**
 	 * SQL用の型へ変換
 	 * - `SQL` の型情報を元に `SQL` 内への記載用データへ変換
+	 * - 文字列データはダブルクォーテーションを付けた文字列を返す
+	 * - 数値データなどはダブルクォーテーション無しの文字列型を返す
 	 * 
 	 * @param {any} x
 	 * @returns {string}
@@ -248,6 +250,10 @@ class SQLite3IF {
 	constructor(db_file, table_name) {
 		this.db_file = db_file;
 		this.table_name = table_name;
+		// ここでスキーマを調べるが、外部実行によって時間がかかってしまう
+		// IFを作成する際に全テーブルを調査してしまうか
+		// 実際に使用する際に、作成するなど、工夫するとよいはず。
+		// いずれ修正したい。
 		this.initSchema();
 	}
 
@@ -347,10 +353,12 @@ class SQLite3IF {
 
 	/**
 	 * レコードを調べる
-	 * @param {any} target_record
+	 * @param {Object<string, any>} target_record
+	 * @param {Object<string, number>} [is_show]
 	 * @returns {Object<string, any>[]}
 	 */
-	find(target_record) {
+	find(target_record, is_show) {
+		// TODO ROWID も表示させる
 		if(target_record === undefined) {
 			if(this.count() === 0) {
 				// レコードなし
