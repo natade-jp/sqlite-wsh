@@ -1,17 +1,19 @@
 ﻿/**
  * データベースのレコードの列データ
  * @typedef {Object} SQLite3TypeData
- * @property {string} column_name 列名
- * @property {string} type_name 型名
+ * @property {number} cid 列番号
+ * @property {string} name 列名
+ * @property {string} type 型名
  * @property {number} size 型のサイズ
- * @property {boolean} is_unique ユニークかどうか
- * @property {boolean} is_not_null NULLを許してよいか
+ * @property {Object} dflt_value 初期値 未設定は(`NULL`)
+ * @property {boolean} is_not_null `NULL` を許してよいか
  */
 declare type SQLite3TypeData = {
-    column_name: string;
-    type_name: string;
+    cid: number;
+    name: string;
+    type: string;
     size: number;
-    is_unique: boolean;
+    dflt_value: any;
     is_not_null: boolean;
 };
 
@@ -24,9 +26,12 @@ declare const SQL_TIME_OUT = ".timeout 1000\n";
  * データベースの操作用インタフェース
  * @param {SFile} db_file DBファイル
  * @param {string} table_name テーブル名
+ * @param {Object<string, SQLite3Type>} table_info テーブル情報
  */
 declare class SQLite3IF {
-    constructor(db_file: SFile, table_name: string);
+    constructor(db_file: SFile, table_name: string, table_info: {
+        [key: string]: SQLite3Type;
+    });
     /**
      * 型情報を取得する
      * @return {Object<string, SQLite3TypeData>}
@@ -47,10 +52,15 @@ declare class SQLite3IF {
     count(target_record: any): number;
     /**
      * レコードを調べる
-     * @param {any} target_record
+     * @param {Object<string, any>} [target_record]
+     * @param {Object<string, number>} [is_show]
      * @returns {Object<string, any>[]}
      */
-    find(target_record: any): Object<string, any>[];
+    find(target_record?: {
+        [key: string]: Object<string, any>[];
+    }, is_show?: {
+        [key: string]: number;
+    }): any;
     /**
      * レコードを削除する
      * @param {any} target_record
