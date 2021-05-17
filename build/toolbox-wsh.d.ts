@@ -26,12 +26,10 @@ declare const SQL_TIME_OUT = ".timeout 1000\n";
  * データベースの操作用インタフェース
  * @param {SFile} db_file DBファイル
  * @param {string} table_name テーブル名
- * @param {Object<string, SQLite3Type>} table_info テーブル情報
+ * @param {SQLite3Schema} schema テーブル情報
  */
 declare class SQLite3IF {
-    constructor(db_file: SFile, table_name: string, table_info: {
-        [key: string]: SQLite3Type;
-    });
+    constructor(db_file: SFile, table_name: string, schema: SQLite3Schema);
     /**
      * 型情報を取得する
      * @return {Object<string, SQLite3TypeData>}

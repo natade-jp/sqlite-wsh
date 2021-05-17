@@ -34,67 +34,67 @@
  */
 
 /**
- * データベースのレコードの列データの形式
+ * データベース内のテーブルの列情報
  * @private
  * @requires SenkoWSH
  */
 class SQLite3Type {
 
 	/**
-	 * データベースのレコードの列データの形式を作成する
-	 * @param {SQLite3TypeData} schema_data
+	 * データベース内のテーブルの列情報する
+	 * @param {SQLite3TypeData} info_data
 	 * @private
 	 */
-	constructor(schema_data) {
-		this.schema = schema_data;
+	constructor(info_data) {
+		this.info = info_data;
 		let type = "undefined";
 		// https://www.sqlite.org/datatype3.html
 		// TEXT, VARCHAR
-		if(/char|clob|text|decimal/i.test(this.schema.type)) {
+		if(/char|clob|text|decimal/i.test(this.info.type)) {
 			type = "string";
 		}
 		// NUMERIC
-		else if(/numeric/i.test(this.schema.type)) {
+		else if(/numeric/i.test(this.info.type)) {
 			type = "numeric";
 		}
 		// INTEGER
-		else if(/int/i.test(this.schema.type)) {
+		else if(/int/i.test(this.info.type)) {
 			type = "int";
 		}
 		// REAL
-		else if(/double|float|real/i.test(this.schema.type)) {
+		else if(/double|float|real/i.test(this.info.type)) {
 			type = "real";
 		}
 		// BLOB
-		else if(/blob/i.test(this.schema.type)) {
+		else if(/blob/i.test(this.info.type)) {
 			type = "blob";
 		}
 		// BOOLEAN(NUMERIC)
-		else if(/boolean/i.test(this.schema.type)) {
+		else if(/boolean/i.test(this.info.type)) {
 			type = "boolean";
 		}
 		// DATETIME(NUMERIC)
-		else if(/date|datetime/i.test(this.schema.type)) {
+		else if(/date|datetime/i.test(this.info.type)) {
 			type = "datetime";
 		}
 		// NONE(NUMERIC)
-		else if(/none/i.test(this.schema.type)) {
+		else if(/none/i.test(this.info.type)) {
 			type = "none";
 		}
 		this.normalized_type = type;
 	}
 
 	/**
-	 * `-json` で `pragma table_info(x);` で取得したデータ
-	 * @param {SQLite3TableInfo} table_info 
+	 * `-json` で `pragma table_info(x);` で取得した1レコードデータ
+	 * @param {SQLite3TableInfo} table_info_record 
 	 */
-	static create(table_info) {
-		const cid = table_info.cid;
-		const name = table_info.name;
-		const type = table_info.type.match(/[^(]+/)[0];
-		const dflt_value = table_info.dflt_value;
-		const is_not_null = table_info.notnull !== 0;
-		const size_data = table_info.type.match(/\(([0-9]+)\)/ );
+	static create(table_info_record) {
+		const cid = table_info_record.cid;
+		const name = table_info_record.name;
+		const type = table_info_record.type.match(/[^(]+/)[0];
+		const dflt_value = table_info_record.dflt_value;
+		const is_not_null = table_info_record.notnull !== 0;
+		const size_data = table_info_record.type.match(/\(([0-9]+)\)/ );
 		const size = size_data ? Number.parseInt(size_data[1], 10) : -1;
 		return new SQLite3Type({
 			cid : cid,
@@ -112,12 +112,12 @@ class SQLite3Type {
 	 */
 	getType() {
 		return {
-			cid : this.schema.cid,
-			name : this.schema.name,
-			type : this.schema.type,
-			size : this.schema.size,
-			dflt_value : this.schema.dflt_value,
-			is_not_null : this.schema.is_not_null
+			cid : this.info.cid,
+			name : this.info.name,
+			type : this.info.type,
+			size : this.info.size,
+			dflt_value : this.info.dflt_value,
+			is_not_null : this.info.is_not_null
 		};
 	}
 
@@ -131,7 +131,7 @@ class SQLite3Type {
 	 * @returns {string}
 	 */
 	toSQLDataFromJSData(x) {
-		const td = this.schema;
+		const td = this.info;
 		const js_type = System.typeOf(x);
 		if(this.normalized_type === "string") {
 			/**
@@ -241,6 +241,85 @@ class SQLite3Type {
 
 }
 
+
+/**
+ * データベースのテーブルの構造
+ * @private
+ * @requires SenkoWSH
+ */
+class SQLite3Schema {
+
+	/**
+	 * データベースのテーブルの構造
+	 * @param {Object<string, SQLite3Type>} types
+	 * @private
+	 */
+	constructor(types) {
+		this.types = types;
+	}
+
+	/**
+	 * `-json` で `pragma table_info(x);` で取得したレコードデータ
+	 * @param {string} table_info_text
+	 */
+	static create(table_info_text) {
+
+		/**
+		 * @type {SQLite3TableInfo[]}
+		 */
+		const table_info_array = JSON.parse(table_info_text);
+		/**
+		 * @type {Object<string, SQLite3Type>}
+		 */
+		const info_data = {};
+		// 専用の列データ型へ置き換える
+		for(let j = 0; j < table_info_array.length; j++) {
+			const table_info = table_info_array[j];
+			info_data[table_info.name] = SQLite3Type.create(table_info);
+		}
+
+		return new SQLite3Schema(info_data);
+	}
+
+	/**
+	 * 型情報を取得する
+	 * @return {Object<string, SQLite3TypeData>}
+	 */
+	getTypes() {
+		/**
+		 * @type {Object<string, SQLite3TypeData>}
+		 */
+		const output = {};
+		for(const key in this.types) {
+			output[key] = this.types[key].getType();
+		}
+		return output;
+	}
+
+	/**
+	 * 型情報を用いてSQLiteから取得したデータを整形する
+	 * @param {string} sqlite_output_text
+	 * @returns {Object<string, any>[]}
+	 */
+	 normalizeSQLData(sqlite_output_text) {
+		/**
+		 * @type {Object<string, any>[]}
+		 */
+		const obj_data = JSON.parse(sqlite_output_text);
+		for(let i = 0; i < obj_data.length; i++) {
+			const tgt = obj_data[i];
+			for(const key in tgt) {
+				if(key in this.types) {
+					tgt[key] = this.types[key].toJSDataFromSQLData(tgt[key]);
+				}
+			}
+		}
+		return obj_data;
+	}
+
+}
+
+
 /**
  * SQL のタイムアウト設定
  */
@@ -256,34 +335,12 @@ class SQLite3IF {
 	 * データベースの操作用インタフェース
 	 * @param {SFile} db_file DBファイル
 	 * @param {string} table_name テーブル名
-	 * @param {Object<string, SQLite3Type>} table_info テーブル情報
+	 * @param {SQLite3Schema} schema テーブル情報
 	 */
-	constructor(db_file, table_name, table_info) {
+	constructor(db_file, table_name, schema) {
 		this.db_file = db_file;
 		this.table_name = table_name;
-		this.table_info = table_info;
-	}
-
-	/**
-	 * 型情報を用いてSQLiteから取得したデータを整形する
-	 * @param {string} sqlite_output_text
-	 * @returns {Object<string, any>[]}
-	 * @private
-	 */
-	normalizeSQLData(sqlite_output_text) {
-		/**
-		 * @type {Object<string, any>[]}
-		 */
-		const obj_data = JSON.parse(sqlite_output_text);
-		for(let i = 0; i < obj_data.length; i++) {
-			const tgt = obj_data[i];
-			for(const key in tgt) {
-				if(key in this.table_info) {
-					tgt[key] = this.table_info[key].toJSDataFromSQLData(tgt[key]);
-				}
-			}
-		}
-		return obj_data;
+		this.schema = schema;
 	}
 
 	/**
@@ -291,14 +348,7 @@ class SQLite3IF {
 	 * @return {Object<string, SQLite3TypeData>}
 	 */
 	getTypes() {
-		/**
-		 * @type {Object<string, SQLite3TypeData>}
-		 */
-		const output = {};
-		for(const key in this.table_info) {
-			output[key] = this.table_info[key].getType();
-		}
-		return output;
+		return this.schema.getTypes();
 	}
 
 	/**
@@ -345,7 +395,7 @@ class SQLite3IF {
 				console.log("find," + this.table_name);
 				return null;
 			}
-			return this.normalizeSQLData(sql_data);
+			return this.schema.normalizeSQLData(sql_data);
 		}
 		return [];
 	}
@@ -396,6 +446,7 @@ export default class SQLite3 {
 
 		// テーブル内の列データを作成する
 		/**
+		 * 列名
 		 * @type {string[]}
 		 */
 		const table_info_sql = [];
@@ -403,6 +454,7 @@ export default class SQLite3 {
 			const key = table_name_list[i];
 			table_info_sql.push("pragma table_info(" + key + ");");
 		}
+
 		// テーブル内の列データを全て取得する
 		const table_info_data = SQLite3.execSQL(db_file, SQL_TIME_OUT + table_info_sql.join(""), "-readonly -json");
 		if(!table_info_data) {
@@ -411,7 +463,8 @@ export default class SQLite3 {
 		}
 		// []で括られた1テーブルごとのJSON情報から、1テーブルずつ抜き出して、データを格納する
 		/**
-		 * @type {Object<string, SQLite3Type>[]}
+		 * 列情報
+		 * @type {SQLite3Schema[]}
 		 */
 		const type_obj_list = [];
 		/**
@@ -420,20 +473,7 @@ export default class SQLite3 {
 		 * @private
 		 */
 		const create_table_info = function(table_info_text) {
-			/**
-			 * @type {SQLite3TableInfo[]}
-			 */
-			const table_info_array = JSON.parse(table_info_text);
-			/**
-			 * @type {Object<string, SQLite3Type>}
-			 */
-			const type_obj = {};
-			// 専用の列データ型へ置き換える
-			for(let j = 0; j < table_info_array.length; j++) {
-				const table_info = table_info_array[j];
-				type_obj[table_info.name] = SQLite3Type.create(table_info);
-			}
-			type_obj_list.push(type_obj);
+			type_obj_list.push(SQLite3Schema.create(table_info_text));
 			return "";
 		}
 		table_info_data.replace(/(\[[^\]]+\])/g, create_table_info);
