@@ -329,6 +329,9 @@ class SQLite3Schema {
 			return "";
 		}
 
+		/**
+		 * @type {Object<string, string>}
+		 */
 		const sign_map = {
 			"$gt"  : ">",
 			"$gte" : ">=",
@@ -338,12 +341,15 @@ class SQLite3Schema {
 			"$ne"  : "!="
 		}
 
+		const types = this.types;
+
 		/**
 		 * @param {Object<string, any>} obj 
 		 * @param {number} level
-		 * @returns {string}
+		 * @param {string[]} sql_text
+		 * @returns
 		 */
-		const create = function(obj, level) {
+		const create = function(obj, level, sql_text) {
 			// 下調べ
 			let len = 0;
 			/**
@@ -359,27 +365,62 @@ class SQLite3Schema {
 				keys.push(key);
 				values.push(obj[key]);
 			}
-			if((len === 0) && (level === 0)) {
-				return "";
-			}
+
+			let is_first = false;
 
 			// 本格的に調査
 			for(let i = 0; i < len; i++) {
 				const key = keys[i];
-				const value = values[i];
 
 				// 型情報の中にあるかどうか
-				if(key in this.types) {
+				if(key in types) {
 					// 型情報にあった場合は、以下の用になる
 					//  { money: { $gt: 30 } }
-
+					/**
+					 * @type {Object<string, string>}
+					 */
+					const data = values[i];
+					// 型情報の設定があるか
+					for(const data_key in data) {
+						if(sign_map[data_key]) {
+							if(!is_first) {
+								sql_text.push("and");
+								is_first = true;
+							}
+							sql_text.push("(");
+							sql_text.push(key);
+							sql_text.push(data_key);
+							sql_text.push(types[key].toSQLDataFromJSData(data[data_key]));
+							sql_text.push(")");
+							break;
+						}
+					}
 				}
-
-
+				// or 条件
+				else if(key === "$or") {
+					/**
+					 * @type {Object<string, string>[]}
+					 */
+					const data = values[i];
+					for(let j = 0; j < data.length; j++) {
+						if(j > 0) {
+							sql_text.push("or");
+						}
+						sql_text.push("(");
+						create(data[j], level + 1, sql_text);
+						sql_text.push(")");
+					}
+				}
 			}
-
 		}
-		return create(where_obj, 0);
+
+		/**
+		 * @type {string[]}
+		 */
+		const sql_text = [];
+		create(where_obj, 0, sql_text);
+
+		return sql_text.length ? "where " + sql_text.join(" ") : "";
 	}
 
 }
@@ -527,7 +568,7 @@ export default class SQLite3 {
 			return null;
 		}
 		// []で括られた1テーブルごとのJSON情報から、1テーブルずつ抜き出して、データを格納する
-		
+
 		/**
 		 * 列情報
 		 * @type {SQLite3Schema[]}
