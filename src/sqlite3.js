@@ -91,10 +91,11 @@ class SQLite3Type {
 	static create(table_info_record) {
 		const cid = table_info_record.cid;
 		const name = table_info_record.name;
-		const type = table_info_record.type.match(/[^(]+/)[0];
+		const type_data = table_info_record.type.match(/[^(]+/);
+		const type = type_data ? type_data[0] : "NONE";
 		const dflt_value = table_info_record.dflt_value;
 		const is_not_null = table_info_record.notnull !== 0;
-		const size_data = table_info_record.type.match(/\(([0-9]+)\)/ );
+		const size_data = table_info_record.type.match(/\(([0-9]+)\)/);
 		const size = size_data ? Number.parseInt(size_data[1], 10) : -1;
 		return new SQLite3Type({
 			cid : cid,
@@ -124,8 +125,8 @@ class SQLite3Type {
 	/**
 	 * SQL用の型へ変換
 	 * - `SQL` の型情報を元に `SQL` 内への記載用データへ変換
-	 * - 文字列データはダブルクォーテーションを付けた文字列を返す
-	 * - 数値データなどはダブルクォーテーション無しの文字列型を返す
+	 * - 文字列データはシングルクォーテーションを付けた文字列を返す
+	 * - 数値データなどはシングルクォーテーション無しの文字列型を返す
 	 * 
 	 * @param {any} x
 	 * @returns {string}
@@ -139,15 +140,15 @@ class SQLite3Type {
 			 */
 			const str = x.toString();
 			if(td.size === -1) {
-				return "\"" + str + "\"";
+				return "'" + str + "'";
 			}
 			else {
-				return "\"" + str.slice(0, td.size) + "\"";
+				return "'" + str.slice(0, td.size) + "'";
 			}
 		}
 		else if((this.normalized_type === "numeric") || (this.normalized_type === "none")) {
 			if(js_type !== "number") {
-				return "\"" + x + "\"";
+				return "'" + x + "'";
 			}
 			return x.toString();
 		}
@@ -161,7 +162,7 @@ class SQLite3Type {
 			if(js_type !== "number") {
 				return Number.parseFloat(x).toString();
 			}
-			return Math.toString();
+			return x.toString();
 		}
 		else if(this.normalized_type === "blob") {
 			return "null";
@@ -268,6 +269,7 @@ class SQLite3Schema {
 		 * @type {SQLite3TableInfo[]}
 		 */
 		const table_info_array = JSON.parse(table_info_text);
+
 		/**
 		 * @type {Object<string, SQLite3Type>}
 		 */
@@ -301,7 +303,7 @@ class SQLite3Schema {
 	 * @param {string} sqlite_output_text
 	 * @returns {Object<string, any>[]}
 	 */
-	 normalizeSQLData(sqlite_output_text) {
+	normalizeSQLData(sqlite_output_text) {
 		/**
 		 * @type {Object<string, any>[]}
 		 */
@@ -315,6 +317,69 @@ class SQLite3Schema {
 			}
 		}
 		return obj_data;
+	}
+
+	/**
+	 * where文を作成する
+	 * @param {Object<string, any>} where_obj
+	 * @returns {string}
+	 */
+	createWhereSQL(where_obj) {
+		if(where_obj === undefined) {
+			return "";
+		}
+
+		const sign_map = {
+			"$gt"  : ">",
+			"$gte" : ">=",
+			"$lt"  : "<",
+			"$lte" : "<=",
+			"$eq"  : "==",
+			"$ne"  : "!="
+		}
+
+		/**
+		 * @param {Object<string, any>} obj 
+		 * @param {number} level
+		 * @returns {string}
+		 */
+		const create = function(obj, level) {
+			// 下調べ
+			let len = 0;
+			/**
+			 * @type {string[]}
+			 */
+			const keys = [];
+			/**
+			 * @type {any[]}
+			 */
+			const values = [];
+			for(const key in obj) {
+				len++;
+				keys.push(key);
+				values.push(obj[key]);
+			}
+			if((len === 0) && (level === 0)) {
+				return "";
+			}
+
+			// 本格的に調査
+			for(let i = 0; i < len; i++) {
+				const key = keys[i];
+				const value = values[i];
+
+				// 型情報の中にあるかどうか
+				if(key in this.types) {
+					// 型情報にあった場合は、以下の用になる
+					//  { money: { $gt: 30 } }
+
+				}
+
+
+			}
+
+		}
+		return create(where_obj, 0);
 	}
 
 }
@@ -462,6 +527,7 @@ export default class SQLite3 {
 			return null;
 		}
 		// []で括られた1テーブルごとのJSON情報から、1テーブルずつ抜き出して、データを格納する
+		
 		/**
 		 * 列情報
 		 * @type {SQLite3Schema[]}
