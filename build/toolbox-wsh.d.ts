@@ -38,16 +38,24 @@ declare class SQLite3IF {
         [key: string]: SQLite3TypeData;
     };
     /**
-     * レコードを挿入する
-     * @param {any} insert_record
-     */
-    insert(insert_record: any): void;
-    /**
      * レコード数を調べる
      * @param {any} target_record
      * @returns {number}
      */
     count(target_record: any): number;
+    /**
+     * レコードを調べるSQL文を作成する
+     * - レコード数が 0 の場合は "" を返す
+     *
+     * @param {Object<string, any>} [target_record]
+     * @param {Object<string, number>} [is_show]
+     * @returns {string}
+     */
+    createFindSQL(target_record?: {
+        [key: string]: any;
+    }, is_show?: {
+        [key: string]: number;
+    }): string;
     /**
      * レコードを調べる
      * @param {Object<string, any>} [target_record]
@@ -55,21 +63,10 @@ declare class SQLite3IF {
      * @returns {Object<string, any>[]}
      */
     find(target_record?: {
-        [key: string]: Object<string, any>[];
+        [key: string]: any;
     }, is_show?: {
         [key: string]: number;
     }): any;
-    /**
-     * レコードを削除する
-     * @param {any} target_record
-     */
-    remove(target_record: any): void;
-    /**
-     * レコードを変更する
-     * @param {any} update_record
-     * @param {any} target_record
-     */
-    update(update_record: any, target_record: any): void;
 }
 
 /**

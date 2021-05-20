@@ -366,7 +366,7 @@ class SQLite3Schema {
 				values.push(obj[key]);
 			}
 
-			let is_first = false;
+			let is_first = true;
 
 			// 本格的に調査
 			for(let i = 0; i < len; i++) {
@@ -374,26 +374,50 @@ class SQLite3Schema {
 
 				// 型情報の中にあるかどうか
 				if(key in types) {
-					// 型情報にあった場合は、以下の用になる
-					//  { money: { $gt: 30 } }
-					/**
-					 * @type {Object<string, string>}
-					 */
-					const data = values[i];
-					// 型情報の設定があるか
-					for(const data_key in data) {
-						if(sign_map[data_key]) {
-							if(!is_first) {
-								sql_text.push("and");
-								is_first = true;
+
+					const value = values[i];
+					const value_type = System.typeOf(value);
+
+					if(value_type === "object") {
+
+						// 型情報にあった場合は、以下の用になる
+						//  { money: { $gt: 30 } }
+						/**
+						 * @type {Object<string, string>}
+						 */
+						const data = value;
+
+						// 型情報の設定があるか
+						for(const data_key in data) {
+							if(sign_map[data_key]) {
+								if(!is_first) {
+									sql_text.push("and");
+								}
+								else {
+									is_first = false;
+								}
+								sql_text.push("(");
+								sql_text.push(key);
+								sql_text.push(sign_map[data_key]);
+								sql_text.push(types[key].toSQLDataFromJSData(data[data_key]));
+								sql_text.push(")");
+								continue;
 							}
-							sql_text.push("(");
-							sql_text.push(key);
-							sql_text.push(data_key);
-							sql_text.push(types[key].toSQLDataFromJSData(data[data_key]));
-							sql_text.push(")");
-							break;
 						}
+					}
+					else {
+						// 指定がない場合は = 判定
+						if(!is_first) {
+							sql_text.push("and");
+						}
+						else {
+							is_first = false;
+						}
+						sql_text.push("(");
+						sql_text.push(key);
+						sql_text.push("=");
+						sql_text.push(types[key].toSQLDataFromJSData(value));
+						sql_text.push(")");
 					}
 				}
 				// or 条件
@@ -457,13 +481,13 @@ class SQLite3IF {
 		return this.schema.getTypes();
 	}
 
-	/**
+	/*
 	 * レコードを挿入する
 	 * @param {any} insert_record
 	 */
-	insert(insert_record) {
-
-	}
+//	insert(insert_record) {
+//
+//	}
 
 	/**
 	 * レコード数を調べる
@@ -483,45 +507,61 @@ class SQLite3IF {
 	}
 
 	/**
+	 * レコードを調べるSQL文を作成する
+	 * - レコード数が 0 の場合は "" を返す
+	 * 
+	 * @param {Object<string, any>} [target_record]
+	 * @param {Object<string, number>} [is_show]
+	 * @returns {string}
+	 */
+	createFindSQL(target_record, is_show) {
+		// TODO ROWID も表示させる
+		if(target_record === undefined) {
+			if(this.count() === 0) {
+				// レコードなし
+				return "";
+			}
+			const sql = SQL_TIME_OUT + "select * from " + this.table_name;
+			return sql;
+		}
+		const sql = SQL_TIME_OUT + "select * from " + this.table_name + " " + this.schema.createWhereSQL(target_record);
+		return sql;
+	}
+
+	/**
 	 * レコードを調べる
 	 * @param {Object<string, any>} [target_record]
 	 * @param {Object<string, number>} [is_show]
 	 * @returns {Object<string, any>[]}
 	 */
 	find(target_record, is_show) {
-		// TODO ROWID も表示させる
-		if(target_record === undefined) {
-			if(this.count() === 0) {
-				// レコードなし
-				return [];
-			}
-			const sql = SQL_TIME_OUT + "select * from " + this.table_name;
-			const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly -json");
-			if(!sql_data) {
-				console.log("find," + this.table_name);
-				return null;
-			}
-			return this.schema.normalizeSQLData(sql_data);
+		const sql = this.createFindSQL(target_record, is_show);
+		if(sql === "") {
+			// レコードなし
+			return [];
 		}
-		return [];
+		const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly -json");
+		if(!sql_data) {
+			console.log("not find, " + sql.replace(/\n/g, "_"));
+			return [];
+		}
+		return this.schema.normalizeSQLData(sql_data);
 	}
 
-	/**
+	/*
 	 * レコードを削除する
 	 * @param {any} target_record
 	 */
-	remove(target_record) {
+//	remove(target_record) {
+//	}
 
-	}
-
-	/**
+	/*
 	 * レコードを変更する
 	 * @param {any} update_record
 	 * @param {any} target_record
 	 */
-	update(update_record, target_record) {
-
-	}
+//	update(update_record, target_record) {
+//	}
 
 }
 

@@ -12,6 +12,7 @@ catch (error) {
 // 自動生成したdtsファイルを解析
 let dts_text = File.loadTextFile("./tmp/types.d.ts");
 
+/*
 // 戻り値の補正
 // 戻り値が any で終わっているものは解析エラーの可能性があるため、returns の情報を使用する
 {
@@ -44,6 +45,7 @@ let dts_text = File.loadTextFile("./tmp/types.d.ts");
 	}
 	dts_text = dts_text_line.join("\n");
 }
+*/
 
 {
 	// "import("./*/*.js")." などのimport文の除去
