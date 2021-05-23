@@ -6,9 +6,16 @@
 
 様々な外部アプリケーションを用いて色々な操作の手助けを行う `JScript` 用のライブラリです。
 
-以下のソフトウェアと連携できます。
+以下のソフトウェアと連携できます。今後も追加していく予定です。
 
-- sqlite3 - `JSON` と `sqlite-tools` を使用して簡単なDB操作を行う
+- sqlite3
+
+## sqlite3
+ `JSON` と `sqlite-tools` を使用して `MongoDB` のような操作感で `DB` を行う。
+
+ 以下の機能のみ対応
+ - `find`
+ - `count`
 
 ## include
 

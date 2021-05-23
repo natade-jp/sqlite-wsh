@@ -1,7 +1,7 @@
 {
 	"name": "toolbox-wsh",
-	"version": "1.0.0",
-	"description": "Simple sqlite operations in WSH JScript.",
+	"version": "0.1.0",
+	"description": "This is a library that works with specific external applications using WSH.",
 	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
 	"repository": {
 		"type": "git",
