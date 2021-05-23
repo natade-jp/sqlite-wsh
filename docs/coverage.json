@@ -1,0 +1,32 @@
+{
+  "coverage": "100%",
+  "expectCount": 32,
+  "actualCount": 32,
+  "files": {
+    "src/SQLite3/SQLite3.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/SQLite3/SQLite3IF.js": {
+      "expectCount": 9,
+      "actualCount": 9,
+      "undocumentLines": []
+    },
+    "src/SQLite3/SQLite3Schema.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "src/SQLite3/SQLite3Type.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "src/toolbox-wsh.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    }
+  }
+}

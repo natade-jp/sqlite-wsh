@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/SQLite3/SQLite3Schema.js | toolbox-wsh</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="This is a library that works with specific external applications using WSH."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="toolbox-wsh"><meta property="twitter:description" content="This is a library that works with specific external applications using WSH."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/natade-jp/toolbox-wsh"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ToolBoxWSH">ToolBoxWSH</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#sqlite3">SQLite3</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3.js~SQLite3.html">SQLite3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3IF.js~SQLite3IF.html">SQLite3IF</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html">SQLite3Schema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Type.js~SQLite3Type.html">SQLite3Type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TableInfo">SQLite3TableInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TypeData">SQLite3TypeData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/SQLite3/SQLite3Schema.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&#xFEFF;/**
+ * The script is part of toolbox-wsh.
+ * 
+ * AUTHOR:
+ *  natade (http://twitter.com/natadea)
+ * 
+ * LICENSE:
+ *  The MIT license https://opensource.org/licenses/MIT
+ */
+
+/// &lt;reference path=&quot;../../include/SenkoWSH.d.ts&quot; /&gt;
+
+import SQLite3Type from &quot;./SQLite3Type.js&quot;;
+
+/**
+ * `-json` &#x3067; `pragma table_info(x);` &#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x60C5;&#x5831;
+ * @typedef {Object} SQLite3TableInfo
+ * @property {number} cid &#x5217;&#x756A;&#x53F7;
+ * @property {string} name &#x5217;&#x540D;
+ * @property {string} type &#x578B;&#x540D; + &#x578B;&#x306E;&#x30B5;&#x30A4;&#x30BA;
+ * @property {number} notnull `NULL` &#x3092;&#x8A31;&#x3057;&#x3066;&#x3088;&#x3044;&#x304B;
+ * @property {string} dflt_value &#x521D;&#x671F;&#x5024; &#x672A;&#x8A2D;&#x5B9A;&#x306F;(`NULL`)
+ * @property {number} pk &#x4E3B;&#x30AD;&#x30FC;&#x3068;&#x3057;&#x3066;&#x8A2D;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;
+ * @private
+ */
+
+/**
+ * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x306E;&#x69CB;&#x9020;
+ * @requires SQLite3Type
+ * @requires SenkoWSH
+ */
+export default class SQLite3Schema {
+
+	/**
+	 * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x306E;&#x69CB;&#x9020;
+	 * - `create` &#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x3053;&#x3068;
+	 * 
+	 * @param {Object&lt;string, SQLite3Type&gt;} types &#x5217;&#x540D;&#x3068;&#x305D;&#x306E;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x578B;&#x60C5;&#x5831;
+	 * @private
+	 */
+	constructor(types) {
+
+		/**
+		 * &#x5217;&#x540D;&#x3068;&#x305D;&#x306E;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x578B;&#x60C5;&#x5831;
+		 */
+		this.types = types;
+
+	}
+
+	/**
+	 * `SQLite3Schema` &#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * `-json` &#x3067; `pragma table_info(x);` &#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F15;&#x6570;&#x306B;&#x53D6;&#x308B;
+	 * 
+	 * @param {string} table_info_text
+	 */
+	static create(table_info_text) {
+
+		/**
+		 * @type {SQLite3TableInfo[]}
+		 */
+		const table_info_array = JSON.parse(table_info_text);
+
+		/**
+		 * @type {Object&lt;string, SQLite3Type&gt;}
+		 */
+		const info_data = {};
+		// &#x5C02;&#x7528;&#x306E;&#x5217;&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3078;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x308B;
+		for(let j = 0; j &lt; table_info_array.length; j++) {
+			const table_info = table_info_array[j];
+			info_data[table_info.name] = SQLite3Type.create(table_info);
+		}
+
+		return new SQLite3Schema(info_data);
+	}
+
+	/**
+	 * &#x578B;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;
+	 * @return {Object&lt;string, import(&quot;./SQLite3Type.js&quot;).SQLite3TypeData&gt;}
+	 */
+	getTypes() {
+		/**
+		 * @type {Object&lt;string, import(&quot;./SQLite3Type.js&quot;).SQLite3TypeData&gt;}
+		 */
+		const output = {};
+		for(const key in this.types) {
+			output[key] = this.types[key].getType();
+		}
+		return output;
+	}
+
+	/**
+	 * &#x578B;&#x60C5;&#x5831;&#x3092;&#x7528;&#x3044;&#x3066;SQLite&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x6574;&#x5F62;&#x3059;&#x308B;
+	 * @param {string} sqlite_output_text
+	 * @returns {Object&lt;string, any&gt;[]}
+	 */
+	normalizeSQLData(sqlite_output_text) {
+		/**
+		 * @type {Object&lt;string, any&gt;[]}
+		 */
+		const obj_data = JSON.parse(sqlite_output_text);
+		for(let i = 0; i &lt; obj_data.length; i++) {
+			const tgt = obj_data[i];
+			for(const key in tgt) {
+				if(key in this.types) {
+					tgt[key] = this.types[key].toJSDataFromSQLData(tgt[key]);
+				}
+			}
+		}
+		return obj_data;
+	}
+
+	/**
+	 * where&#x6587;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * @param {Object&lt;string, any&gt;} where_obj
+	 * @returns {string}
+	 */
+	createWhereSQL(where_obj) {
+		if(where_obj === undefined) {
+			return &quot;&quot;;
+		}
+
+		/**
+		 * @type {Object&lt;string, string&gt;}
+		 */
+		const sign_map = {
+			&quot;$gt&quot;  : &quot;&gt;&quot;,
+			&quot;$gte&quot; : &quot;&gt;=&quot;,
+			&quot;$lt&quot;  : &quot;&lt;&quot;,
+			&quot;$lte&quot; : &quot;&lt;=&quot;,
+			&quot;$eq&quot;  : &quot;==&quot;,
+			&quot;$ne&quot;  : &quot;!=&quot;
+		}
+
+		const types = this.types;
+
+		/**
+		 * @param {Object&lt;string, any&gt;} obj 
+		 * @param {number} level
+		 * @param {string[]} sql_text
+		 * @returns
+		 */
+		const create = function(obj, level, sql_text) {
+			// &#x4E0B;&#x8ABF;&#x3079;
+			let len = 0;
+			/**
+			 * @type {string[]}
+			 */
+			const keys = [];
+			/**
+			 * @type {any[]}
+			 */
+			const values = [];
+			for(const key in obj) {
+				len++;
+				keys.push(key);
+				values.push(obj[key]);
+			}
+
+			let is_first = true;
+
+			// &#x672C;&#x683C;&#x7684;&#x306B;&#x8ABF;&#x67FB;
+			for(let i = 0; i &lt; len; i++) {
+				const key = keys[i];
+
+				// &#x578B;&#x60C5;&#x5831;&#x306E;&#x4E2D;&#x306B;&#x3042;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;
+				if(key in types) {
+
+					const value = values[i];
+					const value_type = System.typeOf(value);
+
+					if(value_type === &quot;object&quot;) {
+
+						// &#x578B;&#x60C5;&#x5831;&#x306B;&#x3042;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x7528;&#x306B;&#x306A;&#x308B;
+						//  { money: { $gt: 30 } }
+						/**
+						 * @type {Object&lt;string, string&gt;}
+						 */
+						const data = value;
+
+						// &#x578B;&#x60C5;&#x5831;&#x306E;&#x8A2D;&#x5B9A;&#x304C;&#x3042;&#x308B;&#x304B;
+						for(const data_key in data) {
+							if(sign_map[data_key]) {
+								if(!is_first) {
+									sql_text.push(&quot;and&quot;);
+								}
+								else {
+									is_first = false;
+								}
+								sql_text.push(&quot;(&quot;);
+								sql_text.push(key);
+								sql_text.push(sign_map[data_key]);
+								sql_text.push(types[key].toSQLDataFromJSData(data[data_key]));
+								sql_text.push(&quot;)&quot;);
+								continue;
+							}
+						}
+					}
+					else {
+						// &#x6307;&#x5B9A;&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F; = &#x5224;&#x5B9A;
+						if(!is_first) {
+							sql_text.push(&quot;and&quot;);
+						}
+						else {
+							is_first = false;
+						}
+						sql_text.push(&quot;(&quot;);
+						sql_text.push(key);
+						sql_text.push(&quot;=&quot;);
+						sql_text.push(types[key].toSQLDataFromJSData(value));
+						sql_text.push(&quot;)&quot;);
+					}
+				}
+				// or &#x6761;&#x4EF6;
+				else if(key === &quot;$or&quot;) {
+					/**
+					 * @type {Object&lt;string, string&gt;[]}
+					 */
+					const data = values[i];
+					for(let j = 0; j &lt; data.length; j++) {
+						if(j &gt; 0) {
+							sql_text.push(&quot;or&quot;);
+						}
+						sql_text.push(&quot;(&quot;);
+						create(data[j], level + 1, sql_text);
+						sql_text.push(&quot;)&quot;);
+					}
+				}
+			}
+		}
+
+		/**
+		 * @type {string[]}
+		 */
+		const sql_text = [];
+		create(where_obj, 0, sql_text);
+
+		return sql_text.length ? &quot;where &quot; + sql_text.join(&quot; &quot;) : &quot;&quot;;
+	}
+
+	/**
+	 * select&#x6587;&#x306E;&#x5BFE;&#x8C61;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * @param {Object&lt;string, any&gt;} select_column_obj
+	 * @returns {string}
+	 */
+	createSelectColumnSQL(select_column_obj) {
+		/**
+		 * @type {string[]}
+		 */
+		const column_array = [];
+		if(select_column_obj === undefined) {
+			// &#x5168;&#x9078;&#x629E;
+			column_array.push(&quot;rowid&quot;);
+			for(const key in this.types) {
+				column_array.push(key);
+			}
+		}
+		else {
+			for(const key in select_column_obj) {
+				if(!(key in this.types)) {
+					console.log(&quot;not found : &quot; + key);
+					continue;
+				}
+				if(select_column_obj[key]) {
+					column_array.push(key);
+				}
+			}
+		}
+		return column_array.join(&quot;, &quot;);
+	}
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

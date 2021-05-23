@@ -1,0 +1,1764 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/SQLite3/SQLite3.js",
+    "content": "﻿/**\n * The script is part of toolbox-wsh.\n * \n * AUTHOR:\n *  natade (http://twitter.com/natadea)\n * \n * LICENSE:\n *  The MIT license https://opensource.org/licenses/MIT\n */\n\n/// <reference path=\"../../include/SenkoWSH.d.ts\" />\n\nimport SQLite3Schema from \"./SQLite3Schema.js\";\nimport SQLite3IF from \"./SQLite3IF.js\";\n\n/**\n * SQL のタイムアウト設定\n */\nconst SQL_TIME_OUT = \".timeout 1000\\n\";\n\n/**\n * WSH で SQLite3 を使用するためのライブラリ\n * @requires SenkoWSH\n */\nexport default class SQLite3 {\n\t\n\t/**\n\t * 利用するデータベースをセット\n\t * @param {SFile} db_file DBファイル\n\t * @returns {Object<string, SQLite3IF>} テーブル操作用データ\n\t */\n\tstatic use(db_file) {\n\t\t/**\n\t\t * @type {Object<string, SQLite3IF>}\n\t\t */\n\t\tconst output = {};\n\n\t\t// テーブル名のリストを作成\n\t\tconst table_name = SQLite3.execSQL(db_file, \".tables\", \"-readonly\");\n\t\tif(!table_name) {\n\t\t\tconsole.log(\"use1,\" + db_file);\n\t\t\treturn null;\n\t\t}\n\t\tconst table_name_list = table_name.trim().split(/\\s+/);\n\n\t\t// テーブル内の列データを作成する\n\t\t/**\n\t\t * 列名\n\t\t * @type {string[]}\n\t\t */\n\t\tconst table_info_sql = [];\n\t\tfor(let i = 0; i < table_name_list.length; i++) {\n\t\t\tconst key = table_name_list[i];\n\t\t\ttable_info_sql.push(\"pragma table_info(\" + key + \");\");\n\t\t}\n\n\t\t// テーブル内の列データを全て取得する\n\t\tconst table_info_data = SQLite3.execSQL(db_file, table_info_sql.join(\"\"), \"-readonly -json\");\n\t\tif(!table_info_data) {\n\t\t\tconsole.log(\"use2,\" + db_file);\n\t\t\treturn null;\n\t\t}\n\t\t// []で括られた1テーブルごとのJSON情報から、1テーブルずつ抜き出して、データを格納する\n\n\t\t/**\n\t\t * 列情報\n\t\t * @type {SQLite3Schema[]}\n\t\t */\n\t\tconst type_obj_list = [];\n\n\t\t/**\n\t\t * @param {string} table_info_text\n\t\t * @returns {string}\n\t\t * @private\n\t\t */\n\t\tconst create_table_info = function(table_info_text) {\n\t\t\ttype_obj_list.push(SQLite3Schema.create(table_info_text));\n\t\t\treturn \"\";\n\t\t}\n\t\ttable_info_data.replace(/(\\[[^\\]]+\\])/g, create_table_info);\n\n\t\t// IFを作成していく\n\t\tfor(let i = 0; i < table_name_list.length; i++) {\n\t\t\tconst key = table_name_list[i];\n\t\t\tconst data = new SQLite3IF(db_file, key, type_obj_list[i]);\n\t\t\toutput[key] = data;\n\t\t}\n\t\treturn output;\n\t}\n\n\t/**\n\t * SQL文を実行する\n\t * @param {SFile} db_file DBファイル\n\t * @param {string} sql SQL文\n\t * @param {string} [option] 実行時のオプション\n\t * @returns {string | null} SQL実行結果\n\t */\n\t static execSQL(db_file, sql, option) {\n\t\tif(!SQLite3.sqlite3) {\n\t\t\tconsole.log(\"execSQL,\" + db_file + \",\" + sql);\n\t\t\treturn null;\n\t\t}\n\t\tconst option_ = option !== undefined ? option : \"\";\n\t\tconst sql_file = SFile.createTempFile();\n\t\tconst sqt_text = SQL_TIME_OUT + sql;\n\t\tsql_file.writeString(sqt_text, \"utf-8\", \"\\r\\n\", false);\n\t\tconst script = \"\\\"\" + SQLite3.sqlite3.getAbsolutePath() + \"\\\" \\\"\" + db_file.getAbsolutePath() + \"\\\" \" + option_ + \" < \\\"\" + sql_file.getAbsolutePath() + \"\\\"\";\n\t\tconst output = System.execBatchScript(script, \"utf-8\");\n\t\tsql_file.remove();\n\t\t/*\n\t\tconsole.log(\"*************\");\n\t\tconsole.log(sql);\n\t\tconsole.log(\"****\");\n\t\tconsole.log(output);\n\t\tconsole.log(\"*************\");\n\t\t*/\n\t\treturn output;\n\t }\n\n\t/**\n\t * ツールをインストールする\n\t * - `./lib/sqlite3.exe` を利用する\n\t * - ファイルが存在しない場合は自動でダウンロードする\n\t * - 本ライブラリを使用する場合は、`setSQLite3` でツールを設定するか、`install` でダウンロードする必要がある\n\t * \n\t * @returns {boolean}\n\t */\n\tstatic install() {\n\t\tif(SQLite3.sqlite3) {\n\t\t\treturn true;\n\t\t}\n\t\tconst exe_path = \"./lib/sqlite3.exe\";\n\t\tconst exe_file = new SFile(exe_path);\n\t\tif(exe_file.isFile()) {\n\t\t\t// ファイルがある場合はそれを設定する\n\t\t\treturn SQLite3.setSQLite3(exe_file);\n\t\t}\n\t\telse {\n\t\t\t// ファイルがない場合は、ダウンロードしてくれる\n\t\t\tnew SFile(\"./lib\").mkdirs();\n\t\t\tconst download_url = \"https://www.sqlite.org/download.html\";\n\t\t\tconst download_text = new SFile(download_url).readString();\n\t\t\tif(download_text) {\n\t\t\t\tconst match_data = download_text.match(/'[^']+\\/sqlite-tools-win32[^']+'/);\n\t\t\t\tif(match_data) {\n\t\t\t\t\tconst match_text = match_data[0].toString();\n\t\t\t\t\tconst zip_url = \"https://www.sqlite.org/\" + match_text.substr(1, match_text.length - 2);\n\t\t\t\t\tconst zip_binary = new SFile(zip_url).readBinary();\n\t\t\t\t\tif(zip_binary.length !== 0) {\n\t\t\t\t\t\tconst temp_file_1 = SFile.createTempFile();\n\t\t\t\t\t\ttemp_file_1.mkdirs();\n\t\t\t\t\t\tconst zip_file = new SFile(temp_file_1 + \"\\\\\" + new SFile(zip_url).getName());\n\t\t\t\t\t\tzip_file.writeBinary(zip_binary);\n\t\t\t\t\t\tconst temp_file_2 = SFile.createTempFile();\n\t\t\t\t\t\tSFile.extract(zip_file, temp_file_2);\n\t\t\t\t\t\t/**\n\t\t\t\t\t\t * @type {SFile}\n\t\t\t\t\t\t */\n\t\t\t\t\t\tconst sqlite3_file = SFile.findFile(temp_file_2, /\\\\sqlite3.exe$/i);\n\t\t\t\t\t\tif(sqlite3_file) {\n\t\t\t\t\t\t\tsqlite3_file.move(\"./lib\");\n\t\t\t\t\t\t}\n\t\t\t\t\t\ttemp_file_1.remove();\n\t\t\t\t\t\ttemp_file_2.remove();\n\t\t\t\t\t\treturn SQLite3.setSQLite3(sqlite3_file);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn false;\n\t}\n\n\t/**\n\t * ツールを設定する\n\t * - `*.db` を操作するための `sqlite-tools-win32` に含まれる `sqlite3.exe` を設定する\n\t * @param {SFile|string} sqlite_tool_path\n\t * @returns {boolean}\n\t */\n\tstatic setSQLite3(sqlite_tool_path) {\n\t\tconst exe_file = new SFile(sqlite_tool_path);\n\t\tif(!exe_file.isFile() || !/sqlite3.exe$/i.test(exe_file.getAbsolutePath()) ) {\n\t\t\treturn false;\n\t\t}\n\t\tSQLite3.sqlite3 = exe_file;\n\t\treturn true;\n\t}\n\t\n}\n\n/**\n *  `*.db` を操作するための `sqlite-tools-win32` に含まれる `sqlite3.exe`\n * @type {SFile}\n */\nSQLite3.sqlite3 = null;\n",
+    "static": true,
+    "longname": "D:/JavaScript/toolbox-wsh/src/SQLite3/SQLite3.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "name": "SQL_TIME_OUT",
+    "memberof": "src/SQLite3/SQLite3.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3.js~SQL_TIME_OUT",
+    "access": "public",
+    "export": false,
+    "importPath": "toolbox-wsh/src/SQLite3/SQLite3.js",
+    "importStyle": null,
+    "description": "SQL のタイムアウト設定",
+    "lineNumber": 19,
+    "type": {
+      "types": [
+        "string"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "class",
+    "name": "SQLite3",
+    "memberof": "src/SQLite3/SQLite3.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3.js~SQLite3",
+    "access": "public",
+    "export": true,
+    "importPath": "toolbox-wsh/src/SQLite3/SQLite3.js",
+    "importStyle": "SQLite3",
+    "description": "WSH で SQLite3 を使用するためのライブラリ",
+    "lineNumber": 25,
+    "unknown": [
+      {
+        "tagName": "@requires",
+        "tagValue": "SenkoWSH"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "method",
+    "name": "use",
+    "memberof": "src/SQLite3/SQLite3.js~SQLite3",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/SQLite3/SQLite3.js~SQLite3.use",
+    "access": "public",
+    "description": "利用するデータベースをセット",
+    "lineNumber": 32,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Object<string, SQLite3IF>} テーブル操作用データ"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SFile"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "db_file",
+        "description": "DBファイル"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object<string, SQLite3IF>"
+      ],
+      "spread": false,
+      "description": "テーブル操作用データ"
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "method",
+    "name": "execSQL",
+    "memberof": "src/SQLite3/SQLite3.js~SQLite3",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/SQLite3/SQLite3.js~SQLite3.execSQL",
+    "access": "public",
+    "description": "SQL文を実行する",
+    "lineNumber": 98,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string | null} SQL実行結果"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SFile"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "db_file",
+        "description": "DBファイル"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "sql",
+        "description": "SQL文"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "option",
+        "description": "実行時のオプション"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string ",
+        " null"
+      ],
+      "spread": false,
+      "description": "SQL実行結果"
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "name": "install",
+    "memberof": "src/SQLite3/SQLite3.js~SQLite3",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/SQLite3/SQLite3.js~SQLite3.install",
+    "access": "public",
+    "description": "ツールをインストールする\n- `./lib/sqlite3.exe` を利用する\n- ファイルが存在しない場合は自動でダウンロードする\n- 本ライブラリを使用する場合は、`setSQLite3` でツールを設定するか、`install` でダウンロードする必要がある",
+    "lineNumber": 128,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "setSQLite3",
+    "memberof": "src/SQLite3/SQLite3.js~SQLite3",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/SQLite3/SQLite3.js~SQLite3.setSQLite3",
+    "access": "public",
+    "description": "ツールを設定する\n- `*.db` を操作するための `sqlite-tools-win32` に含まれる `sqlite3.exe` を設定する",
+    "lineNumber": 179,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SFile",
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "sqlite_tool_path",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "file",
+    "name": "src/SQLite3/SQLite3IF.js",
+    "content": "﻿/**\n * The script is part of toolbox-wsh.\n * \n * AUTHOR:\n *  natade (http://twitter.com/natadea)\n * \n * LICENSE:\n *  The MIT license https://opensource.org/licenses/MIT\n */\n\n/// <reference path=\"../../include/SenkoWSH.d.ts\" />\n\nimport SQLite3Schema from \"./SQLite3Schema.js\";\nimport SQLite3 from \"./SQLite3.js\";\n\n/**\n * データベースの操作用インタフェース\n * @requires SQLite3Schema\n * @requires SenkoWSH\n */\nexport default class SQLite3IF {\n\n\t/**\n\t * データベースの操作用インタフェース\n\t * @param {SFile} db_file DBファイル\n\t * @param {string} table_name テーブル名\n\t * @param {SQLite3Schema} schema テーブル情報\n\t */\n\tconstructor(db_file, table_name, schema) {\n\n\t\t/**\n\t\t * 操作対象のDBファイル\n\t\t */\n\t\tthis.db_file = db_file;\n\n\t\t/**\n\t\t * 操作対象のテーブル名\n\t\t */\n\t\tthis.table_name = table_name;\n\n\t\t/**\n\t\t * 操作対象のテーブル情報\n\t\t */\n\t\tthis.schema = schema;\n\t}\n\n\t/**\n\t * 型情報を取得する\n\t * @return {Object<string, import(\"./SQLite3Type.js\").SQLite3TypeData>}\n\t */\n\tgetTypes() {\n\t\treturn this.schema.getTypes();\n\t}\n\n\t/**\n\t * SQL文を作成する\n\t * \n\t * @param {string} sql_type 作成する SQL `select`, `count` など\n\t * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など\n\t * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など\n\t * @returns {string}\n\t */\n\t createSQL(sql_type, where, select) {\n\t\tlet sql_text = \"\";\n\t\tconst sql_from = \" from \" + this.table_name + \" \";\n\t\tconst sql_where = where ? this.schema.createWhereSQL(where) : \"\";\n\t\tif(sql_type === \"count\") {\n\t\t\tsql_text = \"select count(*)\" + sql_from;\n\t\t}\n\t\telse if(sql_type === \"select\") {\n\t\t\tsql_text = \"select \" + this.schema.createSelectColumnSQL(select) + sql_from;\n\t\t}\n\t\tif(sql_where.length) {\n\t\t\tsql_text += sql_where;\n\t\t}\n\t\treturn sql_text;\n\t}\n\n\t/**\n\t * レコード数を調べる\n\t * @param {any} target_record\n\t * @returns {number} \n\t */\n\tcount(target_record) {\n\t\tconst sql = this.createSQL(\"count\", target_record);\n\t\tconst sql_data = SQLite3.execSQL(this.db_file, sql, \"-readonly\");\n\t\tif(!sql_data) {\n\t\t\tconsole.log(\"count,\" + this.table_name);\n\t\t\treturn null;\n\t\t}\n\t\treturn Number.parseInt(sql_data, 10);\n\t}\n\n\t/**\n\t * レコードを調べる\n\t * @param {Object<string, any>} [target_record]\n\t * @param {Object<string, number>} [is_show]\n\t * @returns {Object<string, any>[]}\n\t */\n\tfind(target_record, is_show) {\n\t\tconst sql = this.createSQL(\"select\", target_record, is_show);\n\t\tconst sql_data = SQLite3.execSQL(this.db_file, sql, \"-readonly -json\");\n\t\tif(!sql_data) {\n\t\t\tconsole.log(\"not find, \" + sql.replace(/\\n/g, \"_\"));\n\t\t\treturn [];\n\t\t}\n\t\treturn this.schema.normalizeSQLData(sql_data);\n\t}\n\n\t/*\n\t * レコードを挿入する\n\t * @param {any} insert_record\n\t */\n//\tinsert(insert_record) {\n//\n//\t}\n\n\t/*\n\t * レコードを削除する\n\t * @param {any} target_record\n\t */\n//\tremove(target_record) {\n//\t}\n\n\t/*\n\t * レコードを変更する\n\t * @param {any} update_record\n\t * @param {any} target_record\n\t */\n//\tupdate(update_record, target_record) {\n//\t}\n\n}\n\n",
+    "static": true,
+    "longname": "D:/JavaScript/toolbox-wsh/src/SQLite3/SQLite3IF.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 56,
+    "kind": "class",
+    "name": "SQLite3IF",
+    "memberof": "src/SQLite3/SQLite3IF.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "access": "public",
+    "export": true,
+    "importPath": "toolbox-wsh/src/SQLite3/SQLite3IF.js",
+    "importStyle": "SQLite3IF",
+    "description": "データベースの操作用インタフェース",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@requires",
+        "tagValue": "SQLite3Schema"
+      },
+      {
+        "tagName": "@requires",
+        "tagValue": "SenkoWSH"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 57,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#constructor",
+    "access": "public",
+    "description": "データベースの操作用インタフェース",
+    "lineNumber": 29,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SFile"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "db_file",
+        "description": "DBファイル"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "table_name",
+        "description": "テーブル名"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "SQLite3Schema"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "schema",
+        "description": "テーブル情報"
+      }
+    ]
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "name": "db_file",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#db_file",
+    "access": "public",
+    "description": "操作対象のDBファイル",
+    "lineNumber": 34,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "member",
+    "name": "table_name",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#table_name",
+    "access": "public",
+    "description": "操作対象のテーブル名",
+    "lineNumber": 39,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "member",
+    "name": "schema",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#schema",
+    "access": "public",
+    "description": "操作対象のテーブル情報",
+    "lineNumber": 44,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "name": "getTypes",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#getTypes",
+    "access": "public",
+    "description": "型情報を取得する",
+    "lineNumber": 51,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object<string, import(\"./SQLite3Type.js\").SQLite3TypeData>"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "createSQL",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#createSQL",
+    "access": "public",
+    "description": "SQL文を作成する",
+    "lineNumber": 63,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "sql_type",
+        "description": "作成する SQL `select`, `count` など"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, any>"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "where",
+        "description": "条件文 `{ A : {$gte : 20} }` など"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, number>"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "select",
+        "description": "選択 `{ A : 1 }` など"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "name": "count",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#count",
+    "access": "public",
+    "description": "レコード数を調べる",
+    "lineNumber": 84,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{number} "
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target_record",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "name": "find",
+    "memberof": "src/SQLite3/SQLite3IF.js~SQLite3IF",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3IF.js~SQLite3IF#find",
+    "access": "public",
+    "description": "レコードを調べる",
+    "lineNumber": 100,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Object<string, any>[]}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, any>"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "target_record",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, number>"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "is_show",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object<string, any>[]"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "file",
+    "name": "src/SQLite3/SQLite3Schema.js",
+    "content": "﻿/**\n * The script is part of toolbox-wsh.\n * \n * AUTHOR:\n *  natade (http://twitter.com/natadea)\n * \n * LICENSE:\n *  The MIT license https://opensource.org/licenses/MIT\n */\n\n/// <reference path=\"../../include/SenkoWSH.d.ts\" />\n\nimport SQLite3Type from \"./SQLite3Type.js\";\n\n/**\n * `-json` で `pragma table_info(x);` で取得した情報\n * @typedef {Object} SQLite3TableInfo\n * @property {number} cid 列番号\n * @property {string} name 列名\n * @property {string} type 型名 + 型のサイズ\n * @property {number} notnull `NULL` を許してよいか\n * @property {string} dflt_value 初期値 未設定は(`NULL`)\n * @property {number} pk 主キーとして設定されているか\n * @private\n */\n\n/**\n * データベースのテーブルの構造\n * @requires SQLite3Type\n * @requires SenkoWSH\n */\nexport default class SQLite3Schema {\n\n\t/**\n\t * データベースのテーブルの構造\n\t * - `create` を使用して作成すること\n\t * \n\t * @param {Object<string, SQLite3Type>} types 列名とその列に対応する型情報\n\t * @private\n\t */\n\tconstructor(types) {\n\n\t\t/**\n\t\t * 列名とその列に対応する型情報\n\t\t */\n\t\tthis.types = types;\n\n\t}\n\n\t/**\n\t * `SQLite3Schema` を作成する\n\t * `-json` で `pragma table_info(x);` で取得したレコードデータを引数に取る\n\t * \n\t * @param {string} table_info_text\n\t */\n\tstatic create(table_info_text) {\n\n\t\t/**\n\t\t * @type {SQLite3TableInfo[]}\n\t\t */\n\t\tconst table_info_array = JSON.parse(table_info_text);\n\n\t\t/**\n\t\t * @type {Object<string, SQLite3Type>}\n\t\t */\n\t\tconst info_data = {};\n\t\t// 専用の列データ型へ置き換える\n\t\tfor(let j = 0; j < table_info_array.length; j++) {\n\t\t\tconst table_info = table_info_array[j];\n\t\t\tinfo_data[table_info.name] = SQLite3Type.create(table_info);\n\t\t}\n\n\t\treturn new SQLite3Schema(info_data);\n\t}\n\n\t/**\n\t * 型情報を取得する\n\t * @return {Object<string, import(\"./SQLite3Type.js\").SQLite3TypeData>}\n\t */\n\tgetTypes() {\n\t\t/**\n\t\t * @type {Object<string, import(\"./SQLite3Type.js\").SQLite3TypeData>}\n\t\t */\n\t\tconst output = {};\n\t\tfor(const key in this.types) {\n\t\t\toutput[key] = this.types[key].getType();\n\t\t}\n\t\treturn output;\n\t}\n\n\t/**\n\t * 型情報を用いてSQLiteから取得したデータを整形する\n\t * @param {string} sqlite_output_text\n\t * @returns {Object<string, any>[]}\n\t */\n\tnormalizeSQLData(sqlite_output_text) {\n\t\t/**\n\t\t * @type {Object<string, any>[]}\n\t\t */\n\t\tconst obj_data = JSON.parse(sqlite_output_text);\n\t\tfor(let i = 0; i < obj_data.length; i++) {\n\t\t\tconst tgt = obj_data[i];\n\t\t\tfor(const key in tgt) {\n\t\t\t\tif(key in this.types) {\n\t\t\t\t\ttgt[key] = this.types[key].toJSDataFromSQLData(tgt[key]);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn obj_data;\n\t}\n\n\t/**\n\t * where文を作成する\n\t * @param {Object<string, any>} where_obj\n\t * @returns {string}\n\t */\n\tcreateWhereSQL(where_obj) {\n\t\tif(where_obj === undefined) {\n\t\t\treturn \"\";\n\t\t}\n\n\t\t/**\n\t\t * @type {Object<string, string>}\n\t\t */\n\t\tconst sign_map = {\n\t\t\t\"$gt\"  : \">\",\n\t\t\t\"$gte\" : \">=\",\n\t\t\t\"$lt\"  : \"<\",\n\t\t\t\"$lte\" : \"<=\",\n\t\t\t\"$eq\"  : \"==\",\n\t\t\t\"$ne\"  : \"!=\"\n\t\t}\n\n\t\tconst types = this.types;\n\n\t\t/**\n\t\t * @param {Object<string, any>} obj \n\t\t * @param {number} level\n\t\t * @param {string[]} sql_text\n\t\t * @returns\n\t\t */\n\t\tconst create = function(obj, level, sql_text) {\n\t\t\t// 下調べ\n\t\t\tlet len = 0;\n\t\t\t/**\n\t\t\t * @type {string[]}\n\t\t\t */\n\t\t\tconst keys = [];\n\t\t\t/**\n\t\t\t * @type {any[]}\n\t\t\t */\n\t\t\tconst values = [];\n\t\t\tfor(const key in obj) {\n\t\t\t\tlen++;\n\t\t\t\tkeys.push(key);\n\t\t\t\tvalues.push(obj[key]);\n\t\t\t}\n\n\t\t\tlet is_first = true;\n\n\t\t\t// 本格的に調査\n\t\t\tfor(let i = 0; i < len; i++) {\n\t\t\t\tconst key = keys[i];\n\n\t\t\t\t// 型情報の中にあるかどうか\n\t\t\t\tif(key in types) {\n\n\t\t\t\t\tconst value = values[i];\n\t\t\t\t\tconst value_type = System.typeOf(value);\n\n\t\t\t\t\tif(value_type === \"object\") {\n\n\t\t\t\t\t\t// 型情報にあった場合は、以下の用になる\n\t\t\t\t\t\t//  { money: { $gt: 30 } }\n\t\t\t\t\t\t/**\n\t\t\t\t\t\t * @type {Object<string, string>}\n\t\t\t\t\t\t */\n\t\t\t\t\t\tconst data = value;\n\n\t\t\t\t\t\t// 型情報の設定があるか\n\t\t\t\t\t\tfor(const data_key in data) {\n\t\t\t\t\t\t\tif(sign_map[data_key]) {\n\t\t\t\t\t\t\t\tif(!is_first) {\n\t\t\t\t\t\t\t\t\tsql_text.push(\"and\");\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\telse {\n\t\t\t\t\t\t\t\t\tis_first = false;\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tsql_text.push(\"(\");\n\t\t\t\t\t\t\t\tsql_text.push(key);\n\t\t\t\t\t\t\t\tsql_text.push(sign_map[data_key]);\n\t\t\t\t\t\t\t\tsql_text.push(types[key].toSQLDataFromJSData(data[data_key]));\n\t\t\t\t\t\t\t\tsql_text.push(\")\");\n\t\t\t\t\t\t\t\tcontinue;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\telse {\n\t\t\t\t\t\t// 指定がない場合は = 判定\n\t\t\t\t\t\tif(!is_first) {\n\t\t\t\t\t\t\tsql_text.push(\"and\");\n\t\t\t\t\t\t}\n\t\t\t\t\t\telse {\n\t\t\t\t\t\t\tis_first = false;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsql_text.push(\"(\");\n\t\t\t\t\t\tsql_text.push(key);\n\t\t\t\t\t\tsql_text.push(\"=\");\n\t\t\t\t\t\tsql_text.push(types[key].toSQLDataFromJSData(value));\n\t\t\t\t\t\tsql_text.push(\")\");\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t// or 条件\n\t\t\t\telse if(key === \"$or\") {\n\t\t\t\t\t/**\n\t\t\t\t\t * @type {Object<string, string>[]}\n\t\t\t\t\t */\n\t\t\t\t\tconst data = values[i];\n\t\t\t\t\tfor(let j = 0; j < data.length; j++) {\n\t\t\t\t\t\tif(j > 0) {\n\t\t\t\t\t\t\tsql_text.push(\"or\");\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsql_text.push(\"(\");\n\t\t\t\t\t\tcreate(data[j], level + 1, sql_text);\n\t\t\t\t\t\tsql_text.push(\")\");\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\t/**\n\t\t * @type {string[]}\n\t\t */\n\t\tconst sql_text = [];\n\t\tcreate(where_obj, 0, sql_text);\n\n\t\treturn sql_text.length ? \"where \" + sql_text.join(\" \") : \"\";\n\t}\n\n\t/**\n\t * select文の対象を作成する\n\t * @param {Object<string, any>} select_column_obj\n\t * @returns {string}\n\t */\n\tcreateSelectColumnSQL(select_column_obj) {\n\t\t/**\n\t\t * @type {string[]}\n\t\t */\n\t\tconst column_array = [];\n\t\tif(select_column_obj === undefined) {\n\t\t\t// 全選択\n\t\t\tcolumn_array.push(\"rowid\");\n\t\t\tfor(const key in this.types) {\n\t\t\t\tcolumn_array.push(key);\n\t\t\t}\n\t\t}\n\t\telse {\n\t\t\tfor(const key in select_column_obj) {\n\t\t\t\tif(!(key in this.types)) {\n\t\t\t\t\tconsole.log(\"not found : \" + key);\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tif(select_column_obj[key]) {\n\t\t\t\t\tcolumn_array.push(key);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn column_array.join(\", \");\n\t}\n\n}\n",
+    "static": true,
+    "longname": "D:/JavaScript/toolbox-wsh/src/SQLite3/SQLite3Schema.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 66,
+    "kind": "typedef",
+    "name": "SQLite3TableInfo",
+    "memberof": "src/SQLite3/SQLite3Schema.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3TableInfo",
+    "access": "private",
+    "description": "`-json` で `pragma table_info(x);` で取得した情報",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "cid",
+        "description": "列番号"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "列名"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "type",
+        "description": "型名 + 型のサイズ"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "notnull",
+        "description": "`NULL` を許してよいか"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "dflt_value",
+        "description": "初期値 未設定は(`NULL`)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "pk",
+        "description": "主キーとして設定されているか"
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "SQLite3TableInfo"
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "class",
+    "name": "SQLite3Schema",
+    "memberof": "src/SQLite3/SQLite3Schema.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "access": "public",
+    "export": true,
+    "importPath": "toolbox-wsh/src/SQLite3/SQLite3Schema.js",
+    "importStyle": "SQLite3Schema",
+    "description": "データベースのテーブルの構造",
+    "lineNumber": 32,
+    "unknown": [
+      {
+        "tagName": "@requires",
+        "tagValue": "SQLite3Type"
+      },
+      {
+        "tagName": "@requires",
+        "tagValue": "SenkoWSH"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 68,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema#constructor",
+    "access": "private",
+    "description": "データベースのテーブルの構造\n- `create` を使用して作成すること",
+    "lineNumber": 41,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, SQLite3Type>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "types",
+        "description": "列名とその列に対応する型情報"
+      }
+    ]
+  },
+  {
+    "__docId__": 69,
+    "kind": "member",
+    "name": "types",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema#types",
+    "access": "public",
+    "description": "列名とその列に対応する型情報",
+    "lineNumber": 46,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema.create",
+    "access": "public",
+    "description": "`SQLite3Schema` を作成する\n`-json` で `pragma table_info(x);` で取得したレコードデータを引数に取る",
+    "lineNumber": 56,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "table_info_text",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "method",
+    "name": "getTypes",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema#getTypes",
+    "access": "public",
+    "description": "型情報を取得する",
+    "lineNumber": 80,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object<string, import(\"./SQLite3Type.js\").SQLite3TypeData>"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "normalizeSQLData",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema#normalizeSQLData",
+    "access": "public",
+    "description": "型情報を用いてSQLiteから取得したデータを整形する",
+    "lineNumber": 96,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Object<string, any>[]}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "sqlite_output_text",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object<string, any>[]"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "method",
+    "name": "createWhereSQL",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema#createWhereSQL",
+    "access": "public",
+    "description": "where文を作成する",
+    "lineNumber": 117,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, any>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "where_obj",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "method",
+    "name": "createSelectColumnSQL",
+    "memberof": "src/SQLite3/SQLite3Schema.js~SQLite3Schema",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Schema.js~SQLite3Schema#createSelectColumnSQL",
+    "access": "public",
+    "description": "select文の対象を作成する",
+    "lineNumber": 245,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object<string, any>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "select_column_obj",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "file",
+    "name": "src/SQLite3/SQLite3Type.js",
+    "content": "﻿/**\n * The script is part of toolbox-wsh.\n * \n * AUTHOR:\n *  natade (http://twitter.com/natadea)\n * \n * LICENSE:\n *  The MIT license https://opensource.org/licenses/MIT\n */\n\n/// <reference path=\"../../include/SenkoWSH.d.ts\" />\n\n/**\n * データベースのレコードの列情報\n * @typedef {Object} SQLite3TypeData\n * @property {number} cid 列番号\n * @property {string} name 列名\n * @property {string} type 型名\n * @property {number} size 型のサイズ\n * @property {Object} dflt_value 初期値 未設定は(`NULL`)\n * @property {boolean} is_not_null `NULL` を許してよいか\n */\n\n/**\n * データベース内のテーブルの列情報\n * @requires SenkoWSH\n */\nexport default class SQLite3Type {\n\n\t/**\n\t * データベース内のテーブルの列情報を初期設定する\n\t * - `create` を使用して作成すること\n\t * \n\t * @param {SQLite3TypeData} info_data\n\t * @private\n\t */\n\tconstructor(info_data) {\n\n\t\t/**\n\t\t * 列情報\n\t\t */\n\t\tthis.info = info_data;\n\n\t\t// SQLite には扱える型名が複数あるため正規化した型名を作成\n\t\t{\n\t\t\tlet type = \"undefined\";\n\t\t\t// https://www.sqlite.org/datatype3.html\n\t\t\t// TEXT, VARCHAR\n\t\t\tif(/char|clob|text|decimal/i.test(this.info.type)) {\n\t\t\t\ttype = \"string\";\n\t\t\t}\n\t\t\t// NUMERIC\n\t\t\telse if(/numeric/i.test(this.info.type)) {\n\t\t\t\ttype = \"numeric\";\n\t\t\t}\n\t\t\t// INTEGER\n\t\t\telse if(/int/i.test(this.info.type)) {\n\t\t\t\ttype = \"int\";\n\t\t\t}\n\t\t\t// REAL\n\t\t\telse if(/double|float|real/i.test(this.info.type)) {\n\t\t\t\ttype = \"real\";\n\t\t\t}\n\t\t\t// BLOB\n\t\t\telse if(/blob/i.test(this.info.type)) {\n\t\t\t\ttype = \"blob\";\n\t\t\t}\n\t\t\t// BOOLEAN(NUMERIC)\n\t\t\telse if(/boolean/i.test(this.info.type)) {\n\t\t\t\ttype = \"boolean\";\n\t\t\t}\n\t\t\t// DATETIME(NUMERIC)\n\t\t\telse if(/date|datetime/i.test(this.info.type)) {\n\t\t\t\ttype = \"datetime\";\n\t\t\t}\n\t\t\t// NONE(NUMERIC)\n\t\t\telse if(/none/i.test(this.info.type)) {\n\t\t\t\ttype = \"none\";\n\t\t\t}\n\n\t\t\t/**\n\t\t\t * 正規化した型名\n\t\t\t */\n\t\t\tthis.normalized_type = type;\n\t\t}\n\t}\n\n\t/**\n\t * `SQLite3Type` を作成する\n\t * `-json` で `pragma table_info(x);` で取得した1レコードデータを引数に取る\n\t * \n\t * @param {import(\"./SQLite3Schema\").SQLite3TableInfo} table_info_record \n\t */\n\tstatic create(table_info_record) {\n\t\tconst cid = table_info_record.cid;\n\t\tconst name = table_info_record.name;\n\t\tconst type_data = table_info_record.type.match(/[^(]+/);\n\t\tconst type = type_data ? type_data[0] : \"NONE\";\n\t\tconst dflt_value = table_info_record.dflt_value;\n\t\tconst is_not_null = table_info_record.notnull !== 0;\n\t\tconst size_data = table_info_record.type.match(/\\(([0-9]+)\\)/);\n\t\tconst size = size_data ? Number.parseInt(size_data[1], 10) : -1;\n\t\treturn new SQLite3Type({\n\t\t\tcid : cid,\n\t\t\tname : name,\n\t\t\ttype : type,\n\t\t\tsize : size,\n\t\t\tdflt_value : dflt_value,\n\t\t\tis_not_null : is_not_null\n\t\t});\n\t}\n\n\t/**\n\t * 型情報を取得する\n\t * \n\t * @returns {SQLite3TypeData}\n\t */\n\tgetType() {\n\t\treturn {\n\t\t\tcid : this.info.cid,\n\t\t\tname : this.info.name,\n\t\t\ttype : this.info.type,\n\t\t\tsize : this.info.size,\n\t\t\tdflt_value : this.info.dflt_value,\n\t\t\tis_not_null : this.info.is_not_null\n\t\t};\n\t}\n\n\t/**\n\t * JavaScript用のデータをSQL文で使用できる文字列へ変換\n\t * - `SQL` の型情報を元に `SQL` 内への記載用データへ変換\n\t * - 文字列データはシングルクォーテーションを付けた文字列を返す\n\t * - 数値データなどはシングルクォーテーション無しの文字列型を返す\n\t * \n\t * @param {any} x\n\t * @returns {string}\n\t */\n\ttoSQLDataFromJSData(x) {\n\t\tconst td = this.info;\n\t\tconst js_type = System.typeOf(x);\n\t\tif(this.normalized_type === \"string\") {\n\t\t\t/**\n\t\t\t * @type {string}\n\t\t\t */\n\t\t\tconst str = x.toString();\n\t\t\tif(td.size === -1) {\n\t\t\t\treturn \"'\" + str + \"'\";\n\t\t\t}\n\t\t\telse {\n\t\t\t\treturn \"'\" + str.slice(0, td.size) + \"'\";\n\t\t\t}\n\t\t}\n\t\telse if((this.normalized_type === \"numeric\") || (this.normalized_type === \"none\")) {\n\t\t\tif(js_type !== \"number\") {\n\t\t\t\treturn \"'\" + x + \"'\";\n\t\t\t}\n\t\t\treturn x.toString();\n\t\t}\n\t\telse if(this.normalized_type === \"int\") {\n\t\t\tif(js_type !== \"number\") {\n\t\t\t\treturn Number.parseFloat(x).toString();\n\t\t\t}\n\t\t\treturn Math.trunc(x).toString();\n\t\t}\n\t\telse if(this.normalized_type === \"real\") {\n\t\t\tif(js_type !== \"number\") {\n\t\t\t\treturn Number.parseFloat(x).toString();\n\t\t\t}\n\t\t\treturn x.toString();\n\t\t}\n\t\telse if(this.normalized_type === \"blob\") {\n\t\t\treturn \"null\";\n\t\t}\n\t\telse if(this.normalized_type === \"boolean\") {\n\t\t\treturn !!x ? \"1\" : \"0\";\n\t\t}\n\t\telse if(this.normalized_type === \"datetime\") {\n\t\t\tconst date = new Date(x);\n\t\t\treturn date.getTime().toString();\n\t\t}\n\t\tconsole.log(\"toSQLDataFromJSData:\" + x);\n\t\treturn \"null\";\n\t}\n\n\t/**\n\t * SQLで取得したデータをJavaScript用のデータへ変換\n\t * - 「`-json` で取得し `eval` で変換したデータ」から `SQL` の型情報を元に `JavaScript` の型へ変換\n\t * \n\t * @param {any} x\n\t * @returns {any}\n\t */\n\ttoJSDataFromSQLData(x) {\n\t\tconst js_type = System.typeOf(x);\n\t\tif(this.normalized_type === \"string\") {\n\t\t\tif(js_type === \"string\") {\n\t\t\t\treturn x;\n\t\t\t}\n\t\t\telse if(js_type === \"object\") {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t\telse {\n\t\t\t\treturn x.toString();\n\t\t\t}\n\t\t}\n\t\telse if((this.normalized_type === \"numeric\") || (this.normalized_type === \"none\")) {\n\t\t\tif(js_type === \"object\") {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t\tconst number = Number.parseFloat(x);\n\t\t\tif(Number.isFinite(number)) {\n\t\t\t\treturn number;\n\t\t\t}\n\t\t\tif(x.toString() === number.toString()) {\n\t\t\t\treturn number;\n\t\t\t}\n\t\t\treturn x.toString();\n\t\t}\n\t\telse if(this.normalized_type === \"int\") {\n\t\t\tif(js_type === \"object\") {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t\treturn Number.parseInt(x, 10);\n\t\t}\n\t\telse if(this.normalized_type === \"real\") {\n\t\t\tif(js_type === \"object\") {\n\t\t\t\treturn null;\n\t\t\t}\n\t\t\treturn Number.parseFloat(x);\n\t\t}\n\t\telse if(this.normalized_type === \"blob\") {\n\t\t\treturn {};\n\t\t}\n\t\telse if(this.normalized_type === \"boolean\") {\n\t\t\tconst number = Number.parseFloat(x);\n\t\t\treturn number !== 0;\n\t\t}\n\t\telse if(this.normalized_type === \"datetime\") {\n\t\t\t/**\n\t\t\t * @type {string}\n\t\t\t */\n\t\t\tconst date = x.toString();\n\t\t\treturn new Date(date.replace(/\\-/g, \"/\"));\n\t\t}\n\t\treturn null;\n\t}\n\n}\n",
+    "static": true,
+    "longname": "D:/JavaScript/toolbox-wsh/src/SQLite3/SQLite3Type.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 76,
+    "kind": "typedef",
+    "name": "SQLite3TypeData",
+    "memberof": "src/SQLite3/SQLite3Type.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3TypeData",
+    "access": "public",
+    "description": "データベースのレコードの列情報",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "cid",
+        "description": "列番号"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "列名"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "type",
+        "description": "型名"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "size",
+        "description": "型のサイズ"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "dflt_value",
+        "description": "初期値 未設定は(`NULL`)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "is_not_null",
+        "description": "`NULL` を許してよいか"
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "SQLite3TypeData"
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "class",
+    "name": "SQLite3Type",
+    "memberof": "src/SQLite3/SQLite3Type.js",
+    "static": true,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "access": "public",
+    "export": true,
+    "importPath": "toolbox-wsh/src/SQLite3/SQLite3Type.js",
+    "importStyle": "SQLite3Type",
+    "description": "データベース内のテーブルの列情報",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@requires",
+        "tagValue": "SenkoWSH"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 78,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type#constructor",
+    "access": "private",
+    "description": "データベース内のテーブルの列情報を初期設定する\n- `create` を使用して作成すること",
+    "lineNumber": 37,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "SQLite3TypeData"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "info_data",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 79,
+    "kind": "member",
+    "name": "info",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type#info",
+    "access": "public",
+    "description": "列情報",
+    "lineNumber": 42,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "member",
+    "name": "normalized_type",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type#normalized_type",
+    "access": "public",
+    "description": "正規化した型名",
+    "lineNumber": 84,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "method",
+    "name": "create",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type.create",
+    "access": "public",
+    "description": "`SQLite3Type` を作成する\n`-json` で `pragma table_info(x);` で取得した1レコードデータを引数に取る",
+    "lineNumber": 94,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "import(\"./SQLite3Schema\").SQLite3TableInfo"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "table_info_record",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "method",
+    "name": "getType",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type#getType",
+    "access": "public",
+    "description": "型情報を取得する",
+    "lineNumber": 118,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{SQLite3TypeData}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "SQLite3TypeData"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 83,
+    "kind": "method",
+    "name": "toSQLDataFromJSData",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type#toSQLDataFromJSData",
+    "access": "public",
+    "description": "JavaScript用のデータをSQL文で使用できる文字列へ変換\n- `SQL` の型情報を元に `SQL` 内への記載用データへ変換\n- 文字列データはシングルクォーテーションを付けた文字列を返す\n- 数値データなどはシングルクォーテーション無しの文字列型を返す",
+    "lineNumber": 138,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "name": "toJSDataFromSQLData",
+    "memberof": "src/SQLite3/SQLite3Type.js~SQLite3Type",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/SQLite3/SQLite3Type.js~SQLite3Type#toJSDataFromSQLData",
+    "access": "public",
+    "description": "SQLで取得したデータをJavaScript用のデータへ変換\n- 「`-json` で取得し `eval` で変換したデータ」から `SQL` の型情報を元に `JavaScript` の型へ変換",
+    "lineNumber": 192,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{any}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "any"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "file",
+    "name": "src/toolbox-wsh.js",
+    "content": "﻿/**\n * The script is part of toolbox-wsh.\n * \n * AUTHOR:\n *  natade (http://twitter.com/natadea)\n * \n * LICENSE:\n *  The MIT license https://opensource.org/licenses/MIT\n */\n\n/// <reference path=\"../include/SenkoWSH.d.ts\" />\n\nimport typeSQLite3 from \"./SQLite3/SQLite3.js\";\n\n/**\n * toolbox-wsh\n * @requires SenkoWSH\n */\nconst ToolBoxWSH = {\n\t\n\t/**\n \t * @type {typeof typeSQLite3}\n\t */\n\t SQLite3 : typeSQLite3\n\n}\n\nexport default ToolBoxWSH;\n\nif(!(System.isDefined(\"SQLite3\"))) {\n\t// @ts-ignore\n\t// eslint-disable-next-line no-undef\n\tSQLite3 = typeSQLite3;\n}\n",
+    "static": true,
+    "longname": "D:/JavaScript/toolbox-wsh/src/toolbox-wsh.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 86,
+    "kind": "variable",
+    "name": "ToolBoxWSH",
+    "memberof": "src/toolbox-wsh.js",
+    "static": true,
+    "longname": "src/toolbox-wsh.js~ToolBoxWSH",
+    "access": "public",
+    "export": true,
+    "importPath": "toolbox-wsh/src/toolbox-wsh.js",
+    "importStyle": "ToolBoxWSH",
+    "description": "toolbox-wsh",
+    "lineNumber": 19,
+    "unknown": [
+      {
+        "tagName": "@requires",
+        "tagValue": "SenkoWSH"
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"SQLite3\": *}"
+      ]
+    }
+  },
+  {
+    "kind": "index",
+    "content": "# toolbox-wsh\n\n![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)\n\n## 概要\n\n様々な外部アプリケーションを用いて色々な操作の手助けを行う `JScript` 用のライブラリです。\n\n以下のソフトウェアと連携できます。今後も追加していく予定です。\n\n- sqlite3\n\n## sqlite3\n `JSON` と `sqlite-tools` を使用して `MongoDB` のような操作感で `DB` を行う。\n\n 以下の機能のみ対応\n - `find`\n - `count`\n\n## include\n\n本ライブラリは `include` 内のライブラリを使用したうえで動作します。以下のライブラリが入っています。\n\n- [SenkoWSH](https://github.com/natade-jp/SenkoWSH) - JScirpt補助ツール ( MIT ライセンス )\n\n## Author\n\n- [natade-jp](https://github.com/natade-jp/)\n",
+    "longname": "D:\\JavaScript\\toolbox-wsh\\README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n\t\"name\": \"toolbox-wsh\",\n\t\"version\": \"0.1.0\",\n\t\"description\": \"This is a library that works with specific external applications using WSH.\",\n\t\"author\": \"natade-jp <natade3@gmail.com> (https://github.com/natade-jp)\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://github.com/natade-jp/toolbox-wsh\"\n\t},\n\t\"license\": \"MIT\",\n\t\"main\": \"./build/toolbox-wsh.js\",\n\t\"keywords\": [\n\t\t\"wsh\",\n\t\t\"sqlite\"\n\t],\n\t\"directories\": {\n\t\t\"src\": \"./src\",\n\t\t\"build\": \"./build\"\n\t},\n\t\"scripts\": {\n\t\t\"build\": \"node ./scripts/package.build.js\",\n\t\t\"dts\": \"node ./scripts/package.dts.js\",\n\t\t\"doc\": \"node ./scripts/package.doc.js\",\n\t\t\"start\": \"node ./scripts/execExample.js\"\n\t},\n\t\"devDependencies\": {\n\t\t\"@types/windows-script-host\": \"^5.8.3\",\n\t\t\"esdoc\": \"^1.1.0\",\n\t\t\"esdoc-standard-plugin\": \"^1.0.0\",\n\t\t\"eslint\": \"^6.5.1\",\n\t\t\"jsdoc\": \"^3.6.3\",\n\t\t\"jsdoc-export-default-interop\": \"^0.3.1\",\n\t\t\"mojijs\": \"^3.0.3\",\n\t\t\"rollup\": \"^1.23.1\",\n\t\t\"rollup-plugin-buble\": \"^0.19.8\",\n\t\t\"rollup-plugin-uglify\": \"^6.0.3\",\n\t\t\"rollup-plugin-uglify-es\": \"0.0.1\",\n\t\t\"tsd-jsdoc\": \"^2.4.0\"\n\t},\n\t\"dependencies\": {}\n}\n",
+    "longname": "D:\\JavaScript\\toolbox-wsh\\package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

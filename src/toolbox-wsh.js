@@ -10,7 +10,7 @@
 
 /// <reference path="../include/SenkoWSH.d.ts" />
 
-import typeSQLite3 from "./sqlite3.js";
+import typeSQLite3 from "./SQLite3/SQLite3.js";
 
 /**
  * toolbox-wsh

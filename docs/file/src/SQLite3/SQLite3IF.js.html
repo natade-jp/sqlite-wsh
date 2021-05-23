@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/SQLite3/SQLite3IF.js | toolbox-wsh</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="This is a library that works with specific external applications using WSH."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="toolbox-wsh"><meta property="twitter:description" content="This is a library that works with specific external applications using WSH."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/natade-jp/toolbox-wsh"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ToolBoxWSH">ToolBoxWSH</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#sqlite3">SQLite3</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3.js~SQLite3.html">SQLite3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3IF.js~SQLite3IF.html">SQLite3IF</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html">SQLite3Schema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Type.js~SQLite3Type.html">SQLite3Type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TableInfo">SQLite3TableInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TypeData">SQLite3TypeData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/SQLite3/SQLite3IF.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&#xFEFF;/**
+ * The script is part of toolbox-wsh.
+ * 
+ * AUTHOR:
+ *  natade (http://twitter.com/natadea)
+ * 
+ * LICENSE:
+ *  The MIT license https://opensource.org/licenses/MIT
+ */
+
+/// &lt;reference path=&quot;../../include/SenkoWSH.d.ts&quot; /&gt;
+
+import SQLite3Schema from &quot;./SQLite3Schema.js&quot;;
+import SQLite3 from &quot;./SQLite3.js&quot;;
+
+/**
+ * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306E;&#x64CD;&#x4F5C;&#x7528;&#x30A4;&#x30F3;&#x30BF;&#x30D5;&#x30A7;&#x30FC;&#x30B9;
+ * @requires SQLite3Schema
+ * @requires SenkoWSH
+ */
+export default class SQLite3IF {
+
+	/**
+	 * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306E;&#x64CD;&#x4F5C;&#x7528;&#x30A4;&#x30F3;&#x30BF;&#x30D5;&#x30A7;&#x30FC;&#x30B9;
+	 * @param {SFile} db_file DB&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+	 * @param {string} table_name &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x540D;
+	 * @param {SQLite3Schema} schema &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x60C5;&#x5831;
+	 */
+	constructor(db_file, table_name, schema) {
+
+		/**
+		 * &#x64CD;&#x4F5C;&#x5BFE;&#x8C61;&#x306E;DB&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+		 */
+		this.db_file = db_file;
+
+		/**
+		 * &#x64CD;&#x4F5C;&#x5BFE;&#x8C61;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x540D;
+		 */
+		this.table_name = table_name;
+
+		/**
+		 * &#x64CD;&#x4F5C;&#x5BFE;&#x8C61;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x60C5;&#x5831;
+		 */
+		this.schema = schema;
+	}
+
+	/**
+	 * &#x578B;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;
+	 * @return {Object&lt;string, import(&quot;./SQLite3Type.js&quot;).SQLite3TypeData&gt;}
+	 */
+	getTypes() {
+		return this.schema.getTypes();
+	}
+
+	/**
+	 * SQL&#x6587;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * 
+	 * @param {string} sql_type &#x4F5C;&#x6210;&#x3059;&#x308B; SQL `select`, `count` &#x306A;&#x3069;
+	 * @param {Object&lt;string, any&gt;} [where] &#x6761;&#x4EF6;&#x6587; `{ A : {$gte : 20} }` &#x306A;&#x3069;
+	 * @param {Object&lt;string, number&gt;} [select] &#x9078;&#x629E; `{ A : 1 }` &#x306A;&#x3069;
+	 * @returns {string}
+	 */
+	 createSQL(sql_type, where, select) {
+		let sql_text = &quot;&quot;;
+		const sql_from = &quot; from &quot; + this.table_name + &quot; &quot;;
+		const sql_where = where ? this.schema.createWhereSQL(where) : &quot;&quot;;
+		if(sql_type === &quot;count&quot;) {
+			sql_text = &quot;select count(*)&quot; + sql_from;
+		}
+		else if(sql_type === &quot;select&quot;) {
+			sql_text = &quot;select &quot; + this.schema.createSelectColumnSQL(select) + sql_from;
+		}
+		if(sql_where.length) {
+			sql_text += sql_where;
+		}
+		return sql_text;
+	}
+
+	/**
+	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x6570;&#x3092;&#x8ABF;&#x3079;&#x308B;
+	 * @param {any} target_record
+	 * @returns {number} 
+	 */
+	count(target_record) {
+		const sql = this.createSQL(&quot;count&quot;, target_record);
+		const sql_data = SQLite3.execSQL(this.db_file, sql, &quot;-readonly&quot;);
+		if(!sql_data) {
+			console.log(&quot;count,&quot; + this.table_name);
+			return null;
+		}
+		return Number.parseInt(sql_data, 10);
+	}
+
+	/**
+	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x8ABF;&#x3079;&#x308B;
+	 * @param {Object&lt;string, any&gt;} [target_record]
+	 * @param {Object&lt;string, number&gt;} [is_show]
+	 * @returns {Object&lt;string, any&gt;[]}
+	 */
+	find(target_record, is_show) {
+		const sql = this.createSQL(&quot;select&quot;, target_record, is_show);
+		const sql_data = SQLite3.execSQL(this.db_file, sql, &quot;-readonly -json&quot;);
+		if(!sql_data) {
+			console.log(&quot;not find, &quot; + sql.replace(/\n/g, &quot;_&quot;));
+			return [];
+		}
+		return this.schema.normalizeSQLData(sql_data);
+	}
+
+	/*
+	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x633F;&#x5165;&#x3059;&#x308B;
+	 * @param {any} insert_record
+	 */
+//	insert(insert_record) {
+//
+//	}
+
+	/*
+	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;
+	 * @param {any} target_record
+	 */
+//	remove(target_record) {
+//	}
+
+	/*
+	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;
+	 * @param {any} update_record
+	 * @param {any} target_record
+	 */
+//	update(update_record, target_record) {
+//	}
+
+}
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

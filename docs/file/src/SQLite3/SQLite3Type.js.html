@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/SQLite3/SQLite3Type.js | toolbox-wsh</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="This is a library that works with specific external applications using WSH."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="toolbox-wsh"><meta property="twitter:description" content="This is a library that works with specific external applications using WSH."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/natade-jp/toolbox-wsh"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ToolBoxWSH">ToolBoxWSH</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#sqlite3">SQLite3</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3.js~SQLite3.html">SQLite3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3IF.js~SQLite3IF.html">SQLite3IF</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html">SQLite3Schema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Type.js~SQLite3Type.html">SQLite3Type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TableInfo">SQLite3TableInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TypeData">SQLite3TypeData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/SQLite3/SQLite3Type.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&#xFEFF;/**
+ * The script is part of toolbox-wsh.
+ * 
+ * AUTHOR:
+ *  natade (http://twitter.com/natadea)
+ * 
+ * LICENSE:
+ *  The MIT license https://opensource.org/licenses/MIT
+ */
+
+/// &lt;reference path=&quot;../../include/SenkoWSH.d.ts&quot; /&gt;
+
+/**
+ * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306E;&#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x5217;&#x60C5;&#x5831;
+ * @typedef {Object} SQLite3TypeData
+ * @property {number} cid &#x5217;&#x756A;&#x53F7;
+ * @property {string} name &#x5217;&#x540D;
+ * @property {string} type &#x578B;&#x540D;
+ * @property {number} size &#x578B;&#x306E;&#x30B5;&#x30A4;&#x30BA;
+ * @property {Object} dflt_value &#x521D;&#x671F;&#x5024; &#x672A;&#x8A2D;&#x5B9A;&#x306F;(`NULL`)
+ * @property {boolean} is_not_null `NULL` &#x3092;&#x8A31;&#x3057;&#x3066;&#x3088;&#x3044;&#x304B;
+ */
+
+/**
+ * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x5185;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x306E;&#x5217;&#x60C5;&#x5831;
+ * @requires SenkoWSH
+ */
+export default class SQLite3Type {
+
+	/**
+	 * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x5185;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x306E;&#x5217;&#x60C5;&#x5831;&#x3092;&#x521D;&#x671F;&#x8A2D;&#x5B9A;&#x3059;&#x308B;
+	 * - `create` &#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x3053;&#x3068;
+	 * 
+	 * @param {SQLite3TypeData} info_data
+	 * @private
+	 */
+	constructor(info_data) {
+
+		/**
+		 * &#x5217;&#x60C5;&#x5831;
+		 */
+		this.info = info_data;
+
+		// SQLite &#x306B;&#x306F;&#x6271;&#x3048;&#x308B;&#x578B;&#x540D;&#x304C;&#x8907;&#x6570;&#x3042;&#x308B;&#x305F;&#x3081;&#x6B63;&#x898F;&#x5316;&#x3057;&#x305F;&#x578B;&#x540D;&#x3092;&#x4F5C;&#x6210;
+		{
+			let type = &quot;undefined&quot;;
+			// https://www.sqlite.org/datatype3.html
+			// TEXT, VARCHAR
+			if(/char|clob|text|decimal/i.test(this.info.type)) {
+				type = &quot;string&quot;;
+			}
+			// NUMERIC
+			else if(/numeric/i.test(this.info.type)) {
+				type = &quot;numeric&quot;;
+			}
+			// INTEGER
+			else if(/int/i.test(this.info.type)) {
+				type = &quot;int&quot;;
+			}
+			// REAL
+			else if(/double|float|real/i.test(this.info.type)) {
+				type = &quot;real&quot;;
+			}
+			// BLOB
+			else if(/blob/i.test(this.info.type)) {
+				type = &quot;blob&quot;;
+			}
+			// BOOLEAN(NUMERIC)
+			else if(/boolean/i.test(this.info.type)) {
+				type = &quot;boolean&quot;;
+			}
+			// DATETIME(NUMERIC)
+			else if(/date|datetime/i.test(this.info.type)) {
+				type = &quot;datetime&quot;;
+			}
+			// NONE(NUMERIC)
+			else if(/none/i.test(this.info.type)) {
+				type = &quot;none&quot;;
+			}
+
+			/**
+			 * &#x6B63;&#x898F;&#x5316;&#x3057;&#x305F;&#x578B;&#x540D;
+			 */
+			this.normalized_type = type;
+		}
+	}
+
+	/**
+	 * `SQLite3Type` &#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * `-json` &#x3067; `pragma table_info(x);` &#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;1&#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F15;&#x6570;&#x306B;&#x53D6;&#x308B;
+	 * 
+	 * @param {import(&quot;./SQLite3Schema&quot;).SQLite3TableInfo} table_info_record 
+	 */
+	static create(table_info_record) {
+		const cid = table_info_record.cid;
+		const name = table_info_record.name;
+		const type_data = table_info_record.type.match(/[^(]+/);
+		const type = type_data ? type_data[0] : &quot;NONE&quot;;
+		const dflt_value = table_info_record.dflt_value;
+		const is_not_null = table_info_record.notnull !== 0;
+		const size_data = table_info_record.type.match(/\(([0-9]+)\)/);
+		const size = size_data ? Number.parseInt(size_data[1], 10) : -1;
+		return new SQLite3Type({
+			cid : cid,
+			name : name,
+			type : type,
+			size : size,
+			dflt_value : dflt_value,
+			is_not_null : is_not_null
+		});
+	}
+
+	/**
+	 * &#x578B;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;
+	 * 
+	 * @returns {SQLite3TypeData}
+	 */
+	getType() {
+		return {
+			cid : this.info.cid,
+			name : this.info.name,
+			type : this.info.type,
+			size : this.info.size,
+			dflt_value : this.info.dflt_value,
+			is_not_null : this.info.is_not_null
+		};
+	}
+
+	/**
+	 * JavaScript&#x7528;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x3092;SQL&#x6587;&#x3067;&#x4F7F;&#x7528;&#x3067;&#x304D;&#x308B;&#x6587;&#x5B57;&#x5217;&#x3078;&#x5909;&#x63DB;
+	 * - `SQL` &#x306E;&#x578B;&#x60C5;&#x5831;&#x3092;&#x5143;&#x306B; `SQL` &#x5185;&#x3078;&#x306E;&#x8A18;&#x8F09;&#x7528;&#x30C7;&#x30FC;&#x30BF;&#x3078;&#x5909;&#x63DB;
+	 * - &#x6587;&#x5B57;&#x5217;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x30B7;&#x30F3;&#x30B0;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C6;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4ED8;&#x3051;&#x305F;&#x6587;&#x5B57;&#x5217;&#x3092;&#x8FD4;&#x3059;
+	 * - &#x6570;&#x5024;&#x30C7;&#x30FC;&#x30BF;&#x306A;&#x3069;&#x306F;&#x30B7;&#x30F3;&#x30B0;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C6;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x7121;&#x3057;&#x306E;&#x6587;&#x5B57;&#x5217;&#x578B;&#x3092;&#x8FD4;&#x3059;
+	 * 
+	 * @param {any} x
+	 * @returns {string}
+	 */
+	toSQLDataFromJSData(x) {
+		const td = this.info;
+		const js_type = System.typeOf(x);
+		if(this.normalized_type === &quot;string&quot;) {
+			/**
+			 * @type {string}
+			 */
+			const str = x.toString();
+			if(td.size === -1) {
+				return &quot;&apos;&quot; + str + &quot;&apos;&quot;;
+			}
+			else {
+				return &quot;&apos;&quot; + str.slice(0, td.size) + &quot;&apos;&quot;;
+			}
+		}
+		else if((this.normalized_type === &quot;numeric&quot;) || (this.normalized_type === &quot;none&quot;)) {
+			if(js_type !== &quot;number&quot;) {
+				return &quot;&apos;&quot; + x + &quot;&apos;&quot;;
+			}
+			return x.toString();
+		}
+		else if(this.normalized_type === &quot;int&quot;) {
+			if(js_type !== &quot;number&quot;) {
+				return Number.parseFloat(x).toString();
+			}
+			return Math.trunc(x).toString();
+		}
+		else if(this.normalized_type === &quot;real&quot;) {
+			if(js_type !== &quot;number&quot;) {
+				return Number.parseFloat(x).toString();
+			}
+			return x.toString();
+		}
+		else if(this.normalized_type === &quot;blob&quot;) {
+			return &quot;null&quot;;
+		}
+		else if(this.normalized_type === &quot;boolean&quot;) {
+			return !!x ? &quot;1&quot; : &quot;0&quot;;
+		}
+		else if(this.normalized_type === &quot;datetime&quot;) {
+			const date = new Date(x);
+			return date.getTime().toString();
+		}
+		console.log(&quot;toSQLDataFromJSData:&quot; + x);
+		return &quot;null&quot;;
+	}
+
+	/**
+	 * SQL&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x3092;JavaScript&#x7528;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x3078;&#x5909;&#x63DB;
+	 * - &#x300C;`-json` &#x3067;&#x53D6;&#x5F97;&#x3057; `eval` &#x3067;&#x5909;&#x63DB;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x300D;&#x304B;&#x3089; `SQL` &#x306E;&#x578B;&#x60C5;&#x5831;&#x3092;&#x5143;&#x306B; `JavaScript` &#x306E;&#x578B;&#x3078;&#x5909;&#x63DB;
+	 * 
+	 * @param {any} x
+	 * @returns {any}
+	 */
+	toJSDataFromSQLData(x) {
+		const js_type = System.typeOf(x);
+		if(this.normalized_type === &quot;string&quot;) {
+			if(js_type === &quot;string&quot;) {
+				return x;
+			}
+			else if(js_type === &quot;object&quot;) {
+				return null;
+			}
+			else {
+				return x.toString();
+			}
+		}
+		else if((this.normalized_type === &quot;numeric&quot;) || (this.normalized_type === &quot;none&quot;)) {
+			if(js_type === &quot;object&quot;) {
+				return null;
+			}
+			const number = Number.parseFloat(x);
+			if(Number.isFinite(number)) {
+				return number;
+			}
+			if(x.toString() === number.toString()) {
+				return number;
+			}
+			return x.toString();
+		}
+		else if(this.normalized_type === &quot;int&quot;) {
+			if(js_type === &quot;object&quot;) {
+				return null;
+			}
+			return Number.parseInt(x, 10);
+		}
+		else if(this.normalized_type === &quot;real&quot;) {
+			if(js_type === &quot;object&quot;) {
+				return null;
+			}
+			return Number.parseFloat(x);
+		}
+		else if(this.normalized_type === &quot;blob&quot;) {
+			return {};
+		}
+		else if(this.normalized_type === &quot;boolean&quot;) {
+			const number = Number.parseFloat(x);
+			return number !== 0;
+		}
+		else if(this.normalized_type === &quot;datetime&quot;) {
+			/**
+			 * @type {string}
+			 */
+			const date = x.toString();
+			return new Date(date.replace(/\-/g, &quot;/&quot;));
+		}
+		return null;
+	}
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

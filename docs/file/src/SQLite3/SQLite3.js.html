@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/SQLite3/SQLite3.js | toolbox-wsh</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="This is a library that works with specific external applications using WSH."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="toolbox-wsh"><meta property="twitter:description" content="This is a library that works with specific external applications using WSH."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/natade-jp/toolbox-wsh"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ToolBoxWSH">ToolBoxWSH</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#sqlite3">SQLite3</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3.js~SQLite3.html">SQLite3</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3IF.js~SQLite3IF.html">SQLite3IF</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html">SQLite3Schema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SQLite3/SQLite3Type.js~SQLite3Type.html">SQLite3Type</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TableInfo">SQLite3TableInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SQLite3TypeData">SQLite3TypeData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/SQLite3/SQLite3.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&#xFEFF;/**
+ * The script is part of toolbox-wsh.
+ * 
+ * AUTHOR:
+ *  natade (http://twitter.com/natadea)
+ * 
+ * LICENSE:
+ *  The MIT license https://opensource.org/licenses/MIT
+ */
+
+/// &lt;reference path=&quot;../../include/SenkoWSH.d.ts&quot; /&gt;
+
+import SQLite3Schema from &quot;./SQLite3Schema.js&quot;;
+import SQLite3IF from &quot;./SQLite3IF.js&quot;;
+
+/**
+ * SQL &#x306E;&#x30BF;&#x30A4;&#x30E0;&#x30A2;&#x30A6;&#x30C8;&#x8A2D;&#x5B9A;
+ */
+const SQL_TIME_OUT = &quot;.timeout 1000\n&quot;;
+
+/**
+ * WSH &#x3067; SQLite3 &#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;
+ * @requires SenkoWSH
+ */
+export default class SQLite3 {
+	
+	/**
+	 * &#x5229;&#x7528;&#x3059;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30BB;&#x30C3;&#x30C8;
+	 * @param {SFile} db_file DB&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+	 * @returns {Object&lt;string, SQLite3IF&gt;} &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x64CD;&#x4F5C;&#x7528;&#x30C7;&#x30FC;&#x30BF;
+	 */
+	static use(db_file) {
+		/**
+		 * @type {Object&lt;string, SQLite3IF&gt;}
+		 */
+		const output = {};
+
+		// &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x540D;&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x4F5C;&#x6210;
+		const table_name = SQLite3.execSQL(db_file, &quot;.tables&quot;, &quot;-readonly&quot;);
+		if(!table_name) {
+			console.log(&quot;use1,&quot; + db_file);
+			return null;
+		}
+		const table_name_list = table_name.trim().split(/\s+/);
+
+		// &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x5185;&#x306E;&#x5217;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+		/**
+		 * &#x5217;&#x540D;
+		 * @type {string[]}
+		 */
+		const table_info_sql = [];
+		for(let i = 0; i &lt; table_name_list.length; i++) {
+			const key = table_name_list[i];
+			table_info_sql.push(&quot;pragma table_info(&quot; + key + &quot;);&quot;);
+		}
+
+		// &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x5185;&#x306E;&#x5217;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5168;&#x3066;&#x53D6;&#x5F97;&#x3059;&#x308B;
+		const table_info_data = SQLite3.execSQL(db_file, table_info_sql.join(&quot;&quot;), &quot;-readonly -json&quot;);
+		if(!table_info_data) {
+			console.log(&quot;use2,&quot; + db_file);
+			return null;
+		}
+		// []&#x3067;&#x62EC;&#x3089;&#x308C;&#x305F;1&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3054;&#x3068;&#x306E;JSON&#x60C5;&#x5831;&#x304B;&#x3089;&#x3001;1&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x305A;&#x3064;&#x629C;&#x304D;&#x51FA;&#x3057;&#x3066;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;
+
+		/**
+		 * &#x5217;&#x60C5;&#x5831;
+		 * @type {SQLite3Schema[]}
+		 */
+		const type_obj_list = [];
+
+		/**
+		 * @param {string} table_info_text
+		 * @returns {string}
+		 * @private
+		 */
+		const create_table_info = function(table_info_text) {
+			type_obj_list.push(SQLite3Schema.create(table_info_text));
+			return &quot;&quot;;
+		}
+		table_info_data.replace(/(\[[^\]]+\])/g, create_table_info);
+
+		// IF&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304F;
+		for(let i = 0; i &lt; table_name_list.length; i++) {
+			const key = table_name_list[i];
+			const data = new SQLite3IF(db_file, key, type_obj_list[i]);
+			output[key] = data;
+		}
+		return output;
+	}
+
+	/**
+	 * SQL&#x6587;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;
+	 * @param {SFile} db_file DB&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+	 * @param {string} sql SQL&#x6587;
+	 * @param {string} [option] &#x5B9F;&#x884C;&#x6642;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;
+	 * @returns {string | null} SQL&#x5B9F;&#x884C;&#x7D50;&#x679C;
+	 */
+	 static execSQL(db_file, sql, option) {
+		if(!SQLite3.sqlite3) {
+			console.log(&quot;execSQL,&quot; + db_file + &quot;,&quot; + sql);
+			return null;
+		}
+		const option_ = option !== undefined ? option : &quot;&quot;;
+		const sql_file = SFile.createTempFile();
+		const sqt_text = SQL_TIME_OUT + sql;
+		sql_file.writeString(sqt_text, &quot;utf-8&quot;, &quot;\r\n&quot;, false);
+		const script = &quot;\&quot;&quot; + SQLite3.sqlite3.getAbsolutePath() + &quot;\&quot; \&quot;&quot; + db_file.getAbsolutePath() + &quot;\&quot; &quot; + option_ + &quot; &lt; \&quot;&quot; + sql_file.getAbsolutePath() + &quot;\&quot;&quot;;
+		const output = System.execBatchScript(script, &quot;utf-8&quot;);
+		sql_file.remove();
+		/*
+		console.log(&quot;*************&quot;);
+		console.log(sql);
+		console.log(&quot;****&quot;);
+		console.log(output);
+		console.log(&quot;*************&quot;);
+		*/
+		return output;
+	 }
+
+	/**
+	 * &#x30C4;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B;
+	 * - `./lib/sqlite3.exe` &#x3092;&#x5229;&#x7528;&#x3059;&#x308B;
+	 * - &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x81EA;&#x52D5;&#x3067;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;
+	 * - &#x672C;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;`setSQLite3` &#x3067;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x304B;&#x3001;`install` &#x3067;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;
+	 * 
+	 * @returns {boolean}
+	 */
+	static install() {
+		if(SQLite3.sqlite3) {
+			return true;
+		}
+		const exe_path = &quot;./lib/sqlite3.exe&quot;;
+		const exe_file = new SFile(exe_path);
+		if(exe_file.isFile()) {
+			// &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x305D;&#x308C;&#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;
+			return SQLite3.setSQLite3(exe_file);
+		}
+		else {
+			// &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x3066;&#x304F;&#x308C;&#x308B;
+			new SFile(&quot;./lib&quot;).mkdirs();
+			const download_url = &quot;https://www.sqlite.org/download.html&quot;;
+			const download_text = new SFile(download_url).readString();
+			if(download_text) {
+				const match_data = download_text.match(/&apos;[^&apos;]+\/sqlite-tools-win32[^&apos;]+&apos;/);
+				if(match_data) {
+					const match_text = match_data[0].toString();
+					const zip_url = &quot;https://www.sqlite.org/&quot; + match_text.substr(1, match_text.length - 2);
+					const zip_binary = new SFile(zip_url).readBinary();
+					if(zip_binary.length !== 0) {
+						const temp_file_1 = SFile.createTempFile();
+						temp_file_1.mkdirs();
+						const zip_file = new SFile(temp_file_1 + &quot;\\&quot; + new SFile(zip_url).getName());
+						zip_file.writeBinary(zip_binary);
+						const temp_file_2 = SFile.createTempFile();
+						SFile.extract(zip_file, temp_file_2);
+						/**
+						 * @type {SFile}
+						 */
+						const sqlite3_file = SFile.findFile(temp_file_2, /\\sqlite3.exe$/i);
+						if(sqlite3_file) {
+							sqlite3_file.move(&quot;./lib&quot;);
+						}
+						temp_file_1.remove();
+						temp_file_2.remove();
+						return SQLite3.setSQLite3(sqlite3_file);
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * &#x30C4;&#x30FC;&#x30EB;&#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;
+	 * - `*.db` &#x3092;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E; `sqlite-tools-win32` &#x306B;&#x542B;&#x307E;&#x308C;&#x308B; `sqlite3.exe` &#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;
+	 * @param {SFile|string} sqlite_tool_path
+	 * @returns {boolean}
+	 */
+	static setSQLite3(sqlite_tool_path) {
+		const exe_file = new SFile(sqlite_tool_path);
+		if(!exe_file.isFile() || !/sqlite3.exe$/i.test(exe_file.getAbsolutePath()) ) {
+			return false;
+		}
+		SQLite3.sqlite3 = exe_file;
+		return true;
+	}
+	
+}
+
+/**
+ *  `*.db` &#x3092;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E; `sqlite-tools-win32` &#x306B;&#x542B;&#x307E;&#x308C;&#x308B; `sqlite3.exe`
+ * @type {SFile}
+ */
+SQLite3.sqlite3 = null;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
