@@ -447,6 +447,37 @@ class SQLite3Schema {
 		return sql_text.length ? "where " + sql_text.join(" ") : "";
 	}
 
+	/**
+	 * select文の対象を作成する
+	 * @param {Object<string, any>} select_column_obj
+	 * @returns {string}
+	 */
+	createSelectColumnSQL(select_column_obj) {
+		/**
+		 * @type {string[]}
+		 */
+		const column_array = [];
+		if(select_column_obj === undefined) {
+			// 全選択
+			column_array.push("rowid");
+			for(const key in this.types) {
+				column_array.push(key);
+			}
+		}
+		else {
+			for(const key in select_column_obj) {
+				if(!(key in this.types)) {
+					console.log("not found : " + key);
+					continue;
+				}
+				if(select_column_obj[key]) {
+					column_array.push(key);
+				}
+			}
+		}
+		return column_array.join(", ");
+	}
+
 }
 
 
@@ -481,13 +512,29 @@ class SQLite3IF {
 		return this.schema.getTypes();
 	}
 
-	/*
-	 * レコードを挿入する
-	 * @param {any} insert_record
+	/**
+	 * SQL文を作成する
+	 * 
+	 * @param {string} sql_type 作成する SQL `select`, `count` など
+	 * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など
+	 * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など
+	 * @returns {string}
 	 */
-//	insert(insert_record) {
-//
-//	}
+	 createSQL(sql_type, where, select) {
+		let sql_text = "";
+		const sql_from = " from " + this.table_name + " ";
+		const sql_where = where ? this.schema.createWhereSQL(where) : "";
+		if(sql_type === "count") {
+			sql_text = "select count(*)" + sql_from;
+		}
+		else if(sql_type === "select") {
+			sql_text = "select " + this.schema.createSelectColumnSQL(select) + sql_from;
+		}
+		if(sql_where.length) {
+			sql_text += sql_where;
+		}
+		return sql_text;
+	}
 
 	/**
 	 * レコード数を調べる
@@ -495,37 +542,13 @@ class SQLite3IF {
 	 * @returns {number} 
 	 */
 	count(target_record) {
-		if(target_record === undefined) {
-			const sql = SQL_TIME_OUT + "select count(*) from " + this.table_name;
-			const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly");
-			if(!sql_data) {
-				console.log("count," + this.table_name);
-				return null;
-			}
-			return Number.parseInt(sql_data, 10);
+		const sql = SQL_TIME_OUT + this.createSQL("count", target_record);
+		const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly");
+		if(!sql_data) {
+			console.log("count," + this.table_name);
+			return null;
 		}
-	}
-
-	/**
-	 * レコードを調べるSQL文を作成する
-	 * - レコード数が 0 の場合は "" を返す
-	 * 
-	 * @param {Object<string, any>} [target_record]
-	 * @param {Object<string, number>} [is_show]
-	 * @returns {string}
-	 */
-	createFindSQL(target_record, is_show) {
-		// TODO ROWID も表示させる
-		if(target_record === undefined) {
-			if(this.count() === 0) {
-				// レコードなし
-				return "";
-			}
-			const sql = SQL_TIME_OUT + "select * from " + this.table_name;
-			return sql;
-		}
-		const sql = SQL_TIME_OUT + "select * from " + this.table_name + " " + this.schema.createWhereSQL(target_record);
-		return sql;
+		return Number.parseInt(sql_data, 10);
 	}
 
 	/**
@@ -535,11 +558,7 @@ class SQLite3IF {
 	 * @returns {Object<string, any>[]}
 	 */
 	find(target_record, is_show) {
-		const sql = this.createFindSQL(target_record, is_show);
-		if(sql === "") {
-			// レコードなし
-			return [];
-		}
+		const sql = SQL_TIME_OUT + this.createSQL("select", target_record, is_show);
 		const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly -json");
 		if(!sql_data) {
 			console.log("not find, " + sql.replace(/\n/g, "_"));
@@ -547,6 +566,14 @@ class SQLite3IF {
 		}
 		return this.schema.normalizeSQLData(sql_data);
 	}
+
+	/*
+	 * レコードを挿入する
+	 * @param {any} insert_record
+	 */
+//	insert(insert_record) {
+//
+//	}
 
 	/*
 	 * レコードを削除する

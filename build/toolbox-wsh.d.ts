@@ -38,24 +38,24 @@ declare class SQLite3IF {
         [key: string]: SQLite3TypeData;
     };
     /**
+     * SQL文を作成する
+     *
+     * @param {string} sql_type 作成する SQL `select`, `count` など
+     * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など
+     * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など
+     * @returns {string}
+     */
+    createSQL(sql_type: string, where?: {
+        [key: string]: any;
+    }, select?: {
+        [key: string]: number;
+    }): string;
+    /**
      * レコード数を調べる
      * @param {any} target_record
      * @returns {number}
      */
     count(target_record: any): number;
-    /**
-     * レコードを調べるSQL文を作成する
-     * - レコード数が 0 の場合は "" を返す
-     *
-     * @param {Object<string, any>} [target_record]
-     * @param {Object<string, number>} [is_show]
-     * @returns {string}
-     */
-    createFindSQL(target_record?: {
-        [key: string]: any;
-    }, is_show?: {
-        [key: string]: number;
-    }): string;
     /**
      * レコードを調べる
      * @param {Object<string, any>} [target_record]
