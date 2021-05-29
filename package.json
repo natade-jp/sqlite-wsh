@@ -1,6 +1,6 @@
 {
 	"name": "toolbox-wsh",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "This is a library that works with specific external applications using WSH.",
 	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
 	"repository": {

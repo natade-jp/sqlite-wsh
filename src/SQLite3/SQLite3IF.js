@@ -58,34 +58,66 @@ export default class SQLite3IF {
 	 * @param {string} sql_type 作成する SQL `select`, `count` など
 	 * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など
 	 * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など
+	 * @param {Object<string, any>} [setdata] 設定値 `{ A : 1 }` など
 	 * @returns {string}
 	 */
-	 createSQL(sql_type, where, select) {
+	createSQL(sql_type, where, select, setdata) {
 		let sql_text = "";
-		const sql_from = " from " + this.table_name + " ";
-		const sql_where = where ? this.schema.createWhereSQL(where) : "";
 		if(sql_type === "count") {
-			sql_text = "select count(*)" + sql_from;
+			sql_text = "select count(*) from " + this.table_name;
 		}
 		else if(sql_type === "select") {
-			sql_text = "select " + this.schema.createSelectColumnSQL(select) + sql_from;
+			const select_sql = this.schema.createSelectColumnSQL(select);
+			if(!select_sql) {
+				console.log("Error : createSelectColumnSQL");
+				return null;
+			}
+			sql_text = "select " + select_sql + " from " + this.table_name;
 		}
-		if(sql_where.length) {
-			sql_text += sql_where;
+		else if(sql_type === "insert") {
+			const value_sql = this.schema.createValuesSQL(setdata);
+			if(!value_sql) {
+				console.log("Error : createValuesSQL");
+				return null;
+			}
+			sql_text = "insert into " + this.table_name + " " + value_sql;
 		}
-		return sql_text;
+		else if(sql_type === "delete") {
+			sql_text = "delete from " + this.table_name;
+		}
+		else if(sql_type === "update") {
+			const set_sql = this.schema.createSetSQL(setdata);
+			if(!set_sql) {
+				console.log("Error : createValuesSQL");
+				return null;
+			}
+			sql_text = "update " + this.table_name + " " + set_sql;
+		}
+		if(where) {
+			const where_sql = this.schema.createWhereSQL(where);
+			if(!where_sql) {
+				console.log("Error : createWhereSQL");
+				return null;
+			}
+			sql_text += " " + where_sql;
+		}
+		return sql_text + ";";
 	}
 
 	/**
 	 * レコード数を調べる
-	 * @param {any} target_record
-	 * @returns {number} 
+	 * @param {any} where_record
+	 * @returns {number|null} 
 	 */
-	count(target_record) {
-		const sql = this.createSQL("count", target_record);
+	count(where_record) {
+		const sql = this.createSQL("count", where_record);
+		if(sql === null) {
+			console.log("Error : createSQL");
+			return null;
+		}
 		const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly");
-		if(!sql_data) {
-			console.log("count," + this.table_name);
+		if(sql_data === null) {
+			console.log("Error : count " + this.table_name);
 			return null;
 		}
 		return Number.parseInt(sql_data, 10);
@@ -93,42 +125,81 @@ export default class SQLite3IF {
 
 	/**
 	 * レコードを調べる
-	 * @param {Object<string, any>} [target_record]
+	 * @param {Object<string, any>} [where_record]
 	 * @param {Object<string, number>} [is_show]
-	 * @returns {Object<string, any>[]}
+	 * @returns {Object<string, any>[]|null}
 	 */
-	find(target_record, is_show) {
-		const sql = this.createSQL("select", target_record, is_show);
+	find(where_record, is_show) {
+		const sql = this.createSQL("select", where_record, is_show);
+		if(sql === null) {
+			console.log("Error : createSQL");
+			return null;
+		}
 		const sql_data = SQLite3.execSQL(this.db_file, sql, "-readonly -json");
-		if(!sql_data) {
-			console.log("not find, " + sql.replace(/\n/g, "_"));
+		if(sql_data === null) {
+			console.log("Error : find " + sql.replace(/\n/g, "_"));
 			return [];
 		}
 		return this.schema.normalizeSQLData(sql_data);
 	}
 
-	/*
+	/**
 	 * レコードを挿入する
-	 * @param {any} insert_record
+	 * @param {Object<string, any>} insert_record
+	 * @returns {boolean}
 	 */
-//	insert(insert_record) {
-//
-//	}
+	insert(insert_record) {
+		const sql = this.createSQL("insert", undefined, undefined, insert_record);
+		if(sql === null) {
+			console.log("Error : createSQL");
+			return false;
+		}
+		const sql_data = SQLite3.execSQL(this.db_file, sql);
+		if(sql_data === null) {
+			console.log("Error : insert " + sql.replace(/\n/g, "_"));
+			return false;
+		}
+		return true;
+	}
 
-	/*
+	/**
 	 * レコードを削除する
-	 * @param {any} target_record
+	 * @param {Object<string, any>} [where_record]
+	 * @returns {boolean}
 	 */
-//	remove(target_record) {
-//	}
+	remove(where_record) {
+		const sql = this.createSQL("delete", where_record);
+		if(sql === null) {
+			console.log("Error : createSQL");
+			return false;
+		}
+		const sql_data = SQLite3.execSQL(this.db_file, sql);
+		if(sql_data === null) {
+			console.log("Error : remove " + sql.replace(/\n/g, "_"));
+			return false;
+		}
+		return true;
+	}
 
-	/*
+	/**
 	 * レコードを変更する
-	 * @param {any} update_record
-	 * @param {any} target_record
+	 * @param {Object<string, any>} where_record
+	 * @param {Object<string, any>} update_record
+	 * @returns {boolean}
 	 */
-//	update(update_record, target_record) {
-//	}
+	update(where_record, update_record) {
+		const sql = this.createSQL("update", where_record, undefined, update_record);
+		if(sql === null) {
+			console.log("Error : createSQL");
+			return false;
+		}
+		const sql_data = SQLite3.execSQL(this.db_file, sql);
+		if(sql_data === null) {
+			console.log("Error : update " + sql.replace(/\n/g, "_"));
+			return false;
+		}
+
+	}
 
 }
 

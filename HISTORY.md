@@ -1,5 +1,10 @@
 # History
 
+## v0.2.0
+
+### 変更点
+- `SQLite3` 操作に `update`, `remove`, `insert` を追加
+
 ## v0.1.0
 
 ### 新規作成

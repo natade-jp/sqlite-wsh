@@ -81,7 +81,7 @@ export default class SQLite3 {
 		// &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x540D;&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x4F5C;&#x6210;
 		const table_name = SQLite3.execSQL(db_file, &quot;.tables&quot;, &quot;-readonly&quot;);
 		if(!table_name) {
-			console.log(&quot;use1,&quot; + db_file);
+			console.log(&quot;Error : tables &quot; + db_file);
 			return null;
 		}
 		const table_name_list = table_name.trim().split(/\s+/);
@@ -100,7 +100,7 @@ export default class SQLite3 {
 		// &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x5185;&#x306E;&#x5217;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5168;&#x3066;&#x53D6;&#x5F97;&#x3059;&#x308B;
 		const table_info_data = SQLite3.execSQL(db_file, table_info_sql.join(&quot;&quot;), &quot;-readonly -json&quot;);
 		if(!table_info_data) {
-			console.log(&quot;use2,&quot; + db_file);
+			console.log(&quot;Error : table_info &quot; + db_file);
 			return null;
 		}
 		// []&#x3067;&#x62EC;&#x3089;&#x308C;&#x305F;1&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3054;&#x3068;&#x306E;JSON&#x60C5;&#x5831;&#x304B;&#x3089;&#x3001;1&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x305A;&#x3064;&#x629C;&#x304D;&#x51FA;&#x3057;&#x3066;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;
@@ -132,6 +132,15 @@ export default class SQLite3 {
 	}
 
 	/**
+	 * &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30AD;&#x30E5;&#x30FC;&#x30E0;&#x3059;&#x308B;
+	 * @param {SFile} db_file DB&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+	 * @returns {boolean}
+	 */
+	static vaccum(db_file) {
+		return SQLite3.execSQL(db_file, &quot;vacuum;&quot;) !== null;
+	}
+
+	/**
 	 * SQL&#x6587;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;
 	 * @param {SFile} db_file DB&#x30D5;&#x30A1;&#x30A4;&#x30EB;
 	 * @param {string} sql SQL&#x6587;
@@ -140,7 +149,7 @@ export default class SQLite3 {
 	 */
 	 static execSQL(db_file, sql, option) {
 		if(!SQLite3.sqlite3) {
-			console.log(&quot;execSQL,&quot; + db_file + &quot;,&quot; + sql);
+			console.log(&quot;Error : execSQL &quot; + db_file + &quot;,&quot; + sql);
 			return null;
 		}
 		const option_ = option !== undefined ? option : &quot;&quot;;
@@ -150,14 +159,11 @@ export default class SQLite3 {
 		const script = &quot;\&quot;&quot; + SQLite3.sqlite3.getAbsolutePath() + &quot;\&quot; \&quot;&quot; + db_file.getAbsolutePath() + &quot;\&quot; &quot; + option_ + &quot; &lt; \&quot;&quot; + sql_file.getAbsolutePath() + &quot;\&quot;&quot;;
 		const output = System.execBatchScript(script, &quot;utf-8&quot;);
 		sql_file.remove();
-		/*
-		console.log(&quot;*************&quot;);
-		console.log(sql);
-		console.log(&quot;****&quot;);
-		console.log(output);
-		console.log(&quot;*************&quot;);
-		*/
-		return output;
+		if(output.exit_code) {
+			console.log(output.error);
+			return null;
+		}
+		return output.out;
 	 }
 
 	/**

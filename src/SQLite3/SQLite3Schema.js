@@ -110,9 +110,9 @@ export default class SQLite3Schema {
 	}
 
 	/**
-	 * where文を作成する
+	 * `where文` を作成する
 	 * @param {Object<string, any>} where_obj
-	 * @returns {string}
+	 * @returns {string} `where (a = 1) and (b = 1)`
 	 */
 	createWhereSQL(where_obj) {
 		if(where_obj === undefined) {
@@ -238,9 +238,9 @@ export default class SQLite3Schema {
 	}
 
 	/**
-	 * select文の対象を作成する
+	 * `select文`の対象を作成する
 	 * @param {Object<string, any>} select_column_obj
-	 * @returns {string}
+	 * @returns {string} `aaa, bbb, ccc`
 	 */
 	createSelectColumnSQL(select_column_obj) {
 		/**
@@ -257,7 +257,7 @@ export default class SQLite3Schema {
 		else {
 			for(const key in select_column_obj) {
 				if(!(key in this.types)) {
-					console.log("not found : " + key);
+					console.log("Error : column " + key);
 					continue;
 				}
 				if(select_column_obj[key]) {
@@ -266,6 +266,60 @@ export default class SQLite3Schema {
 			}
 		}
 		return column_array.join(", ");
+	}
+
+	/**
+	 * `insert文` の中身を作成する
+	 * @param {Object<string, any>} insert_row_obj
+	 * @returns {string|null} `values(1, "bbb", ccc)`
+	 */
+	createValuesSQL(insert_row_obj) {
+		/**
+		 * @type {string[]}
+		 */
+		const column_array = [];
+		for(const key in this.types) {
+			const type = this.types[key];
+			let value = null;
+			if(insert_row_obj[key] !== undefined) {
+				value = insert_row_obj[key];
+			}
+			else {
+				value = type.info.dflt_value;
+			}
+			if(value === null && type.info.is_not_null) {
+				console.log("Error : not set " + key);
+				return null;
+			}
+			column_array.push(type.toSQLDataFromJSData(value));
+		}
+		return "values(" + column_array.join(", ") + ")";
+	}
+
+	/**
+	 * `update` の中身を作成する
+	 * @param {Object<string, any>} set_row_obj
+	 * @returns {string|null} `set A = 111`
+	 */
+	createSetSQL(set_row_obj) {
+		/**
+		 * @type {string[]}
+		 */
+		const column_array = [];
+		for(const key in set_row_obj) {
+			const type = this.types[key];
+			if(type === undefined) {
+				console.log("Error. column " + key);
+				continue;
+			}
+			const value = set_row_obj[key];
+			column_array.push(key + " = " + type.toSQLDataFromJSData(value));
+		}
+		if(column_array.length === 0) {
+			console.log("Error. no data " + JSON.stringify(set_row_obj));
+			return null;
+		}
+		return "set " + column_array.join(", ");
 	}
 
 }

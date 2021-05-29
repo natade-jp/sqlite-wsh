@@ -101,34 +101,66 @@ export default class SQLite3IF {
 	 * @param {string} sql_type &#x4F5C;&#x6210;&#x3059;&#x308B; SQL `select`, `count` &#x306A;&#x3069;
 	 * @param {Object&lt;string, any&gt;} [where] &#x6761;&#x4EF6;&#x6587; `{ A : {$gte : 20} }` &#x306A;&#x3069;
 	 * @param {Object&lt;string, number&gt;} [select] &#x9078;&#x629E; `{ A : 1 }` &#x306A;&#x3069;
+	 * @param {Object&lt;string, any&gt;} [setdata] &#x8A2D;&#x5B9A;&#x5024; `{ A : 1 }` &#x306A;&#x3069;
 	 * @returns {string}
 	 */
-	 createSQL(sql_type, where, select) {
+	createSQL(sql_type, where, select, setdata) {
 		let sql_text = &quot;&quot;;
-		const sql_from = &quot; from &quot; + this.table_name + &quot; &quot;;
-		const sql_where = where ? this.schema.createWhereSQL(where) : &quot;&quot;;
 		if(sql_type === &quot;count&quot;) {
-			sql_text = &quot;select count(*)&quot; + sql_from;
+			sql_text = &quot;select count(*) from &quot; + this.table_name;
 		}
 		else if(sql_type === &quot;select&quot;) {
-			sql_text = &quot;select &quot; + this.schema.createSelectColumnSQL(select) + sql_from;
+			const select_sql = this.schema.createSelectColumnSQL(select);
+			if(!select_sql) {
+				console.log(&quot;Error : createSelectColumnSQL&quot;);
+				return null;
+			}
+			sql_text = &quot;select &quot; + select_sql + &quot; from &quot; + this.table_name;
 		}
-		if(sql_where.length) {
-			sql_text += sql_where;
+		else if(sql_type === &quot;insert&quot;) {
+			const value_sql = this.schema.createValuesSQL(setdata);
+			if(!value_sql) {
+				console.log(&quot;Error : createValuesSQL&quot;);
+				return null;
+			}
+			sql_text = &quot;insert into &quot; + this.table_name + &quot; &quot; + value_sql;
 		}
-		return sql_text;
+		else if(sql_type === &quot;delete&quot;) {
+			sql_text = &quot;delete from &quot; + this.table_name;
+		}
+		else if(sql_type === &quot;update&quot;) {
+			const set_sql = this.schema.createSetSQL(setdata);
+			if(!set_sql) {
+				console.log(&quot;Error : createValuesSQL&quot;);
+				return null;
+			}
+			sql_text = &quot;update &quot; + this.table_name + &quot; &quot; + set_sql;
+		}
+		if(where) {
+			const where_sql = this.schema.createWhereSQL(where);
+			if(!where_sql) {
+				console.log(&quot;Error : createWhereSQL&quot;);
+				return null;
+			}
+			sql_text += &quot; &quot; + where_sql;
+		}
+		return sql_text + &quot;;&quot;;
 	}
 
 	/**
 	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x6570;&#x3092;&#x8ABF;&#x3079;&#x308B;
-	 * @param {any} target_record
-	 * @returns {number} 
+	 * @param {any} where_record
+	 * @returns {number|null} 
 	 */
-	count(target_record) {
-		const sql = this.createSQL(&quot;count&quot;, target_record);
+	count(where_record) {
+		const sql = this.createSQL(&quot;count&quot;, where_record);
+		if(sql === null) {
+			console.log(&quot;Error : createSQL&quot;);
+			return null;
+		}
 		const sql_data = SQLite3.execSQL(this.db_file, sql, &quot;-readonly&quot;);
-		if(!sql_data) {
-			console.log(&quot;count,&quot; + this.table_name);
+		if(sql_data === null) {
+			console.log(&quot;Error : count &quot; + this.table_name);
 			return null;
 		}
 		return Number.parseInt(sql_data, 10);
@@ -136,42 +168,81 @@ export default class SQLite3IF {
 
 	/**
 	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x8ABF;&#x3079;&#x308B;
-	 * @param {Object&lt;string, any&gt;} [target_record]
+	 * @param {Object&lt;string, any&gt;} [where_record]
 	 * @param {Object&lt;string, number&gt;} [is_show]
-	 * @returns {Object&lt;string, any&gt;[]}
+	 * @returns {Object&lt;string, any&gt;[]|null}
 	 */
-	find(target_record, is_show) {
-		const sql = this.createSQL(&quot;select&quot;, target_record, is_show);
+	find(where_record, is_show) {
+		const sql = this.createSQL(&quot;select&quot;, where_record, is_show);
+		if(sql === null) {
+			console.log(&quot;Error : createSQL&quot;);
+			return null;
+		}
 		const sql_data = SQLite3.execSQL(this.db_file, sql, &quot;-readonly -json&quot;);
-		if(!sql_data) {
-			console.log(&quot;not find, &quot; + sql.replace(/\n/g, &quot;_&quot;));
+		if(sql_data === null) {
+			console.log(&quot;Error : find &quot; + sql.replace(/\n/g, &quot;_&quot;));
 			return [];
 		}
 		return this.schema.normalizeSQLData(sql_data);
 	}
 
-	/*
+	/**
 	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x633F;&#x5165;&#x3059;&#x308B;
-	 * @param {any} insert_record
+	 * @param {Object&lt;string, any&gt;} insert_record
+	 * @returns {boolean}
 	 */
-//	insert(insert_record) {
-//
-//	}
+	insert(insert_record) {
+		const sql = this.createSQL(&quot;insert&quot;, undefined, undefined, insert_record);
+		if(sql === null) {
+			console.log(&quot;Error : createSQL&quot;);
+			return false;
+		}
+		const sql_data = SQLite3.execSQL(this.db_file, sql);
+		if(sql_data === null) {
+			console.log(&quot;Error : insert &quot; + sql.replace(/\n/g, &quot;_&quot;));
+			return false;
+		}
+		return true;
+	}
 
-	/*
+	/**
 	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;
-	 * @param {any} target_record
+	 * @param {Object&lt;string, any&gt;} [where_record]
+	 * @returns {boolean}
 	 */
-//	remove(target_record) {
-//	}
+	remove(where_record) {
+		const sql = this.createSQL(&quot;delete&quot;, where_record);
+		if(sql === null) {
+			console.log(&quot;Error : createSQL&quot;);
+			return false;
+		}
+		const sql_data = SQLite3.execSQL(this.db_file, sql);
+		if(sql_data === null) {
+			console.log(&quot;Error : remove &quot; + sql.replace(/\n/g, &quot;_&quot;));
+			return false;
+		}
+		return true;
+	}
 
-	/*
+	/**
 	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;
-	 * @param {any} update_record
-	 * @param {any} target_record
+	 * @param {Object&lt;string, any&gt;} where_record
+	 * @param {Object&lt;string, any&gt;} update_record
+	 * @returns {boolean}
 	 */
-//	update(update_record, target_record) {
-//	}
+	update(where_record, update_record) {
+		const sql = this.createSQL(&quot;update&quot;, where_record, undefined, update_record);
+		if(sql === null) {
+			console.log(&quot;Error : createSQL&quot;);
+			return false;
+		}
+		const sql_data = SQLite3.execSQL(this.db_file, sql);
+		if(sql_data === null) {
+			console.log(&quot;Error : update &quot; + sql.replace(/\n/g, &quot;_&quot;));
+			return false;
+		}
+
+	}
 
 }
 

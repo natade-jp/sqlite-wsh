@@ -38,7 +38,7 @@ export default class SQLite3 {
 		// テーブル名のリストを作成
 		const table_name = SQLite3.execSQL(db_file, ".tables", "-readonly");
 		if(!table_name) {
-			console.log("use1," + db_file);
+			console.log("Error : tables " + db_file);
 			return null;
 		}
 		const table_name_list = table_name.trim().split(/\s+/);
@@ -57,7 +57,7 @@ export default class SQLite3 {
 		// テーブル内の列データを全て取得する
 		const table_info_data = SQLite3.execSQL(db_file, table_info_sql.join(""), "-readonly -json");
 		if(!table_info_data) {
-			console.log("use2," + db_file);
+			console.log("Error : table_info " + db_file);
 			return null;
 		}
 		// []で括られた1テーブルごとのJSON情報から、1テーブルずつ抜き出して、データを格納する
@@ -89,6 +89,15 @@ export default class SQLite3 {
 	}
 
 	/**
+	 * データベースをバキュームする
+	 * @param {SFile} db_file DBファイル
+	 * @returns {boolean}
+	 */
+	static vaccum(db_file) {
+		return SQLite3.execSQL(db_file, "vacuum;") !== null;
+	}
+
+	/**
 	 * SQL文を実行する
 	 * @param {SFile} db_file DBファイル
 	 * @param {string} sql SQL文
@@ -97,7 +106,7 @@ export default class SQLite3 {
 	 */
 	 static execSQL(db_file, sql, option) {
 		if(!SQLite3.sqlite3) {
-			console.log("execSQL," + db_file + "," + sql);
+			console.log("Error : execSQL " + db_file + "," + sql);
 			return null;
 		}
 		const option_ = option !== undefined ? option : "";
@@ -107,14 +116,11 @@ export default class SQLite3 {
 		const script = "\"" + SQLite3.sqlite3.getAbsolutePath() + "\" \"" + db_file.getAbsolutePath() + "\" " + option_ + " < \"" + sql_file.getAbsolutePath() + "\"";
 		const output = System.execBatchScript(script, "utf-8");
 		sql_file.remove();
-		/*
-		console.log("*************");
-		console.log(sql);
-		console.log("****");
-		console.log(output);
-		console.log("*************");
-		*/
-		return output;
+		if(output.exit_code) {
+			console.log(output.error);
+			return null;
+		}
+		return output.out;
 	 }
 
 	/**

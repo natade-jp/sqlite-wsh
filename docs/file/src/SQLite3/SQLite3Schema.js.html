@@ -153,9 +153,9 @@ export default class SQLite3Schema {
 	}
 
 	/**
-	 * where&#x6587;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * `where&#x6587;` &#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
 	 * @param {Object&lt;string, any&gt;} where_obj
-	 * @returns {string}
+	 * @returns {string} `where (a = 1) and (b = 1)`
 	 */
 	createWhereSQL(where_obj) {
 		if(where_obj === undefined) {
@@ -281,9 +281,9 @@ export default class SQLite3Schema {
 	}
 
 	/**
-	 * select&#x6587;&#x306E;&#x5BFE;&#x8C61;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * `select&#x6587;`&#x306E;&#x5BFE;&#x8C61;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
 	 * @param {Object&lt;string, any&gt;} select_column_obj
-	 * @returns {string}
+	 * @returns {string} `aaa, bbb, ccc`
 	 */
 	createSelectColumnSQL(select_column_obj) {
 		/**
@@ -300,7 +300,7 @@ export default class SQLite3Schema {
 		else {
 			for(const key in select_column_obj) {
 				if(!(key in this.types)) {
-					console.log(&quot;not found : &quot; + key);
+					console.log(&quot;Error : column &quot; + key);
 					continue;
 				}
 				if(select_column_obj[key]) {
@@ -309,6 +309,60 @@ export default class SQLite3Schema {
 			}
 		}
 		return column_array.join(&quot;, &quot;);
+	}
+
+	/**
+	 * `insert&#x6587;` &#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * @param {Object&lt;string, any&gt;} insert_row_obj
+	 * @returns {string|null} `values(1, &quot;bbb&quot;, ccc)`
+	 */
+	createValuesSQL(insert_row_obj) {
+		/**
+		 * @type {string[]}
+		 */
+		const column_array = [];
+		for(const key in this.types) {
+			const type = this.types[key];
+			let value = null;
+			if(insert_row_obj[key] !== undefined) {
+				value = insert_row_obj[key];
+			}
+			else {
+				value = type.info.dflt_value;
+			}
+			if(value === null &amp;&amp; type.info.is_not_null) {
+				console.log(&quot;Error : not set &quot; + key);
+				return null;
+			}
+			column_array.push(type.toSQLDataFromJSData(value));
+		}
+		return &quot;values(&quot; + column_array.join(&quot;, &quot;) + &quot;)&quot;;
+	}
+
+	/**
+	 * `update` &#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
+	 * @param {Object&lt;string, any&gt;} set_row_obj
+	 * @returns {string|null} `set A = 111`
+	 */
+	createSetSQL(set_row_obj) {
+		/**
+		 * @type {string[]}
+		 */
+		const column_array = [];
+		for(const key in set_row_obj) {
+			const type = this.types[key];
+			if(type === undefined) {
+				console.log(&quot;Error. column &quot; + key);
+				continue;
+			}
+			const value = set_row_obj[key];
+			column_array.push(key + &quot; = &quot; + type.toSQLDataFromJSData(value));
+		}
+		if(column_array.length === 0) {
+			console.log(&quot;Error. no data &quot; + JSON.stringify(set_row_obj));
+			return null;
+		}
+		return &quot;set &quot; + column_array.join(&quot;, &quot;);
 	}
 
 }

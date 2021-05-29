@@ -17,6 +17,12 @@ declare class SQLite3 {
         [key: string]: SQLite3IF;
     };
     /**
+     * データベースをバキュームする
+     * @param {SFile} db_file DBファイル
+     * @returns {boolean}
+     */
+    static vaccum(db_file: SFile): boolean;
+    /**
      * SQL文を実行する
      * @param {SFile} db_file DBファイル
      * @param {string} sql SQL文
@@ -76,30 +82,60 @@ declare class SQLite3IF {
      * @param {string} sql_type 作成する SQL `select`, `count` など
      * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など
      * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など
+     * @param {Object<string, any>} [setdata] 設定値 `{ A : 1 }` など
      * @returns {string}
      */
     createSQL(sql_type: string, where?: {
         [key: string]: any;
     }, select?: {
         [key: string]: number;
+    }, setdata?: {
+        [key: string]: any;
     }): string;
     /**
      * レコード数を調べる
-     * @param {any} target_record
-     * @returns {number}
+     * @param {any} where_record
+     * @returns {number|null}
      */
-    count(target_record: any): number;
+    count(where_record: any): number | null;
     /**
      * レコードを調べる
-     * @param {Object<string, any>} [target_record]
+     * @param {Object<string, any>} [where_record]
      * @param {Object<string, number>} [is_show]
-     * @returns {Object<string, any>[]}
+     * @returns {Object<string, any>[]|null}
      */
-    find(target_record?: {
+    find(where_record?: {
         [key: string]: any;
     }, is_show?: {
         [key: string]: number;
     }): any;
+    /**
+     * レコードを挿入する
+     * @param {Object<string, any>} insert_record
+     * @returns {boolean}
+     */
+    insert(insert_record: {
+        [key: string]: any;
+    }): boolean;
+    /**
+     * レコードを削除する
+     * @param {Object<string, any>} [where_record]
+     * @returns {boolean}
+     */
+    remove(where_record?: {
+        [key: string]: any;
+    }): boolean;
+    /**
+     * レコードを変更する
+     * @param {Object<string, any>} where_record
+     * @param {Object<string, any>} update_record
+     * @returns {boolean}
+     */
+    update(where_record: {
+        [key: string]: any;
+    }, update_record: {
+        [key: string]: any;
+    }): boolean;
 }
 
 declare namespace SQLite3IF {
@@ -143,21 +179,37 @@ declare class SQLite3Schema {
      */
     normalizeSQLData(sqlite_output_text: string): any;
     /**
-     * where文を作成する
+     * `where文` を作成する
      * @param {Object<string, any>} where_obj
-     * @returns {string}
+     * @returns {string} `where (a = 1) and (b = 1)`
      */
     createWhereSQL(where_obj: {
         [key: string]: any;
     }): string;
     /**
-     * select文の対象を作成する
+     * `select文`の対象を作成する
      * @param {Object<string, any>} select_column_obj
-     * @returns {string}
+     * @returns {string} `aaa, bbb, ccc`
      */
     createSelectColumnSQL(select_column_obj: {
         [key: string]: any;
     }): string;
+    /**
+     * `insert文` の中身を作成する
+     * @param {Object<string, any>} insert_row_obj
+     * @returns {string|null} `values(1, "bbb", ccc)`
+     */
+    createValuesSQL(insert_row_obj: {
+        [key: string]: any;
+    }): string | null;
+    /**
+     * `update` の中身を作成する
+     * @param {Object<string, any>} set_row_obj
+     * @returns {string|null} `set A = 111`
+     */
+    createSetSQL(set_row_obj: {
+        [key: string]: any;
+    }): string | null;
 }
 
 /**

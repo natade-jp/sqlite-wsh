@@ -1,21 +1,21 @@
 {
   "coverage": "100%",
-  "expectCount": 32,
-  "actualCount": 32,
+  "expectCount": 38,
+  "actualCount": 38,
   "files": {
     "src/SQLite3/SQLite3.js": {
-      "expectCount": 6,
-      "actualCount": 6,
+      "expectCount": 7,
+      "actualCount": 7,
       "undocumentLines": []
     },
     "src/SQLite3/SQLite3IF.js": {
-      "expectCount": 9,
-      "actualCount": 9,
+      "expectCount": 12,
+      "actualCount": 12,
       "undocumentLines": []
     },
     "src/SQLite3/SQLite3Schema.js": {
-      "expectCount": 8,
-      "actualCount": 8,
+      "expectCount": 10,
+      "actualCount": 10,
       "undocumentLines": []
     },
     "src/SQLite3/SQLite3Type.js": {

@@ -342,6 +342,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/sqlite3/sqlite3.js~sqlite3.vaccum",
+    "class/src/SQLite3/SQLite3.js~SQLite3.html#static-method-vaccum",
+    "src/SQLite3/SQLite3.js~SQLite3.vaccum",
+    "method"
+  ],
+  [
     "src/sqlite3/sqlite3if.js",
     "file/src/SQLite3/SQLite3IF.js.html",
     "src/SQLite3/SQLite3IF.js",
@@ -384,6 +390,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/sqlite3/sqlite3if.js~sqlite3if#insert",
+    "class/src/SQLite3/SQLite3IF.js~SQLite3IF.html#instance-method-insert",
+    "src/SQLite3/SQLite3IF.js~SQLite3IF#insert",
+    "method"
+  ],
+  [
+    "src/sqlite3/sqlite3if.js~sqlite3if#remove",
+    "class/src/SQLite3/SQLite3IF.js~SQLite3IF.html#instance-method-remove",
+    "src/SQLite3/SQLite3IF.js~SQLite3IF#remove",
+    "method"
+  ],
+  [
     "src/sqlite3/sqlite3if.js~sqlite3if#schema",
     "class/src/SQLite3/SQLite3IF.js~SQLite3IF.html#instance-member-schema",
     "src/SQLite3/SQLite3IF.js~SQLite3IF#schema",
@@ -394,6 +412,12 @@ window.esdocSearchIndex = [
     "class/src/SQLite3/SQLite3IF.js~SQLite3IF.html#instance-member-table_name",
     "src/SQLite3/SQLite3IF.js~SQLite3IF#table_name",
     "member"
+  ],
+  [
+    "src/sqlite3/sqlite3if.js~sqlite3if#update",
+    "class/src/SQLite3/SQLite3IF.js~SQLite3IF.html#instance-method-update",
+    "src/SQLite3/SQLite3IF.js~SQLite3IF#update",
+    "method"
   ],
   [
     "src/sqlite3/sqlite3schema.js",
@@ -411,6 +435,18 @@ window.esdocSearchIndex = [
     "src/sqlite3/sqlite3schema.js~sqlite3schema#createselectcolumnsql",
     "class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html#instance-method-createSelectColumnSQL",
     "src/SQLite3/SQLite3Schema.js~SQLite3Schema#createSelectColumnSQL",
+    "method"
+  ],
+  [
+    "src/sqlite3/sqlite3schema.js~sqlite3schema#createsetsql",
+    "class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html#instance-method-createSetSQL",
+    "src/SQLite3/SQLite3Schema.js~SQLite3Schema#createSetSQL",
+    "method"
+  ],
+  [
+    "src/sqlite3/sqlite3schema.js~sqlite3schema#createvaluessql",
+    "class/src/SQLite3/SQLite3Schema.js~SQLite3Schema.html#instance-method-createValuesSQL",
+    "src/SQLite3/SQLite3Schema.js~SQLite3Schema#createValuesSQL",
     "method"
   ],
   [

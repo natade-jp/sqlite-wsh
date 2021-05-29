@@ -157,10 +157,17 @@ export default class SQLite3Type {
 			return x.toString();
 		}
 		else if(this.normalized_type === "int") {
+			let num = 0;
 			if(js_type !== "number") {
-				return Number.parseFloat(x).toString();
+				num = Number.parseFloat(x);
 			}
-			return Math.trunc(x).toString();
+			else {
+				num = x;
+			}
+			if(!isFinite(num)) {
+				num = 0;
+			}
+			return Math.trunc(num).toString();
 		}
 		else if(this.normalized_type === "real") {
 			if(js_type !== "number") {
@@ -178,7 +185,7 @@ export default class SQLite3Type {
 			const date = new Date(x);
 			return date.getTime().toString();
 		}
-		console.log("toSQLDataFromJSData:" + x);
+		console.log("Error : toSQLDataFromJSData " + x);
 		return "null";
 	}
 
@@ -191,7 +198,10 @@ export default class SQLite3Type {
 	 */
 	toJSDataFromSQLData(x) {
 		const js_type = System.typeOf(x);
-		if(this.normalized_type === "string") {
+		if(js_type === "null") {
+			return null;
+		}
+		else if(this.normalized_type === "string") {
 			if(js_type === "string") {
 				return x;
 			}
