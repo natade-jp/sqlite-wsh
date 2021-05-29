@@ -14,10 +14,6 @@
 ## sqlite3
  `JSON` と `sqlite-tools` を使用して `MongoDB` のような操作感で `DB` を行う。
 
- 以下の機能のみ対応
- - `find`
- - `count`
-
 ## include
 
 本ライブラリは `include` 内のライブラリを使用したうえで動作します。以下のライブラリが入っています。

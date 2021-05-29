@@ -2005,7 +2005,7 @@
   },
   {
     "kind": "index",
-    "content": "# toolbox-wsh\n\n[![ESDoc coverage badge](https://natade-jp.github.io/toolbox-wsh/badge.svg)](https://natade-jp.github.io/toolbox-wsh/)\n![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)\n\n## 概要\n\n様々な外部アプリケーションを用いて色々な操作の手助けを行う `JScript` 用のライブラリです。\n\n以下のソフトウェアと連携できます。今後も追加していく予定です。\n\n- sqlite3\n\n## sqlite3\n `JSON` と `sqlite-tools` を使用して `MongoDB` のような操作感で `DB` を行う。\n\n 以下の機能のみ対応\n - `find`\n - `count`\n\n## include\n\n本ライブラリは `include` 内のライブラリを使用したうえで動作します。以下のライブラリが入っています。\n\n- [SenkoWSH](https://github.com/natade-jp/SenkoWSH) - JScirpt補助ツール ( MIT ライセンス )\n\n## Author\n\n- [natade-jp](https://github.com/natade-jp/)\n",
+    "content": "# toolbox-wsh\n\n[![ESDoc coverage badge](https://natade-jp.github.io/toolbox-wsh/badge.svg)](https://natade-jp.github.io/toolbox-wsh/)\n![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)\n\n## 概要\n\n様々な外部アプリケーションを用いて色々な操作の手助けを行う `JScript` 用のライブラリです。\n\n以下のソフトウェアと連携できます。今後も追加していく予定です。\n\n- sqlite3\n\n## sqlite3\n `JSON` と `sqlite-tools` を使用して `MongoDB` のような操作感で `DB` を行う。\n\n## include\n\n本ライブラリは `include` 内のライブラリを使用したうえで動作します。以下のライブラリが入っています。\n\n- [SenkoWSH](https://github.com/natade-jp/SenkoWSH) - JScirpt補助ツール ( MIT ライセンス )\n\n## Author\n\n- [natade-jp](https://github.com/natade-jp/)\n",
     "longname": "D:\\JavaScript\\toolbox-wsh\\README.md",
     "name": "./README.md",
     "static": true,
