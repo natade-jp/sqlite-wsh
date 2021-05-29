@@ -140,6 +140,10 @@ export default class SQLite3IF {
 			console.log("Error : find " + sql.replace(/\n/g, "_"));
 			return [];
 		}
+		if(sql_data.length === 0) {
+			// 何もない場合は、見つからない = レコード数 0
+			return [];
+		}
 		return this.schema.normalizeSQLData(sql_data);
 	}
 

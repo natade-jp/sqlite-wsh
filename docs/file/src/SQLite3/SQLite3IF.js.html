@@ -183,6 +183,10 @@ export default class SQLite3IF {
 			console.log(&quot;Error : find &quot; + sql.replace(/\n/g, &quot;_&quot;));
 			return [];
 		}
+		if(sql_data.length === 0) {
+			// &#x4F55;&#x3082;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;&#x898B;&#x3064;&#x304B;&#x3089;&#x306A;&#x3044; = &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x6570; 0
+			return [];
+		}
 		return this.schema.normalizeSQLData(sql_data);
 	}
 
