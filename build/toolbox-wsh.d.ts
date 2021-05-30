@@ -219,15 +219,15 @@ declare class SQLite3Schema {
  * @property {string} name 列名
  * @property {string} type 型名
  * @property {number} size 型のサイズ
- * @property {Object} dflt_value 初期値 未設定は(`NULL`)
- * @property {boolean} is_not_null `NULL` を許してよいか
+ * @property {string|null} dflt_value 未設定は`null`, 設定されている場合は文字列
+ * @property {boolean} is_not_null `null` を許してよいか
  */
 declare type SQLite3TypeData = {
     cid: number;
     name: string;
     type: string;
     size: number;
-    dflt_value: any;
+    dflt_value: string | null;
     is_not_null: boolean;
 };
 

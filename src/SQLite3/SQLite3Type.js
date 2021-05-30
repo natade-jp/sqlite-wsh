@@ -17,8 +17,8 @@
  * @property {string} name 列名
  * @property {string} type 型名
  * @property {number} size 型のサイズ
- * @property {Object} dflt_value 初期値 未設定は(`NULL`)
- * @property {boolean} is_not_null `NULL` を許してよいか
+ * @property {string|null} dflt_value 未設定は`null`, 設定されている場合は文字列
+ * @property {boolean} is_not_null `null` を許してよいか
  */
 
 /**
@@ -94,9 +94,18 @@ export default class SQLite3Type {
 	static create(table_info_record) {
 		const cid = table_info_record.cid;
 		const name = table_info_record.name;
+		// type_data が未入力の場合はNONE として扱う
 		const type_data = table_info_record.type.match(/[^(]+/);
 		const type = type_data ? type_data[0] : "NONE";
-		const dflt_value = table_info_record.dflt_value;
+		// 未定義なら null 存在する場合は '0' のように ' で囲まれている。
+		let default_value = table_info_record.dflt_value;
+		if(default_value !== null) {
+			// 除去する
+			if(/^'.*'$/.test(default_value)) {
+				default_value = default_value.match(/^'(.*)'$/)[1];
+			} 
+		}
+		const dflt_value = default_value;
 		const is_not_null = table_info_record.notnull !== 0;
 		const size_data = table_info_record.type.match(/\(([0-9]+)\)/);
 		const size = size_data ? Number.parseInt(size_data[1], 10) : -1;

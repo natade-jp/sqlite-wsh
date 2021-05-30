@@ -60,8 +60,8 @@
  * @property {string} name &#x5217;&#x540D;
  * @property {string} type &#x578B;&#x540D;
  * @property {number} size &#x578B;&#x306E;&#x30B5;&#x30A4;&#x30BA;
- * @property {Object} dflt_value &#x521D;&#x671F;&#x5024; &#x672A;&#x8A2D;&#x5B9A;&#x306F;(`NULL`)
- * @property {boolean} is_not_null `NULL` &#x3092;&#x8A31;&#x3057;&#x3066;&#x3088;&#x3044;&#x304B;
+ * @property {string|null} dflt_value &#x672A;&#x8A2D;&#x5B9A;&#x306F;`null`, &#x8A2D;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306F;&#x6587;&#x5B57;&#x5217;
+ * @property {boolean} is_not_null `null` &#x3092;&#x8A31;&#x3057;&#x3066;&#x3088;&#x3044;&#x304B;
  */
 
 /**
@@ -137,9 +137,18 @@ export default class SQLite3Type {
 	static create(table_info_record) {
 		const cid = table_info_record.cid;
 		const name = table_info_record.name;
+		// type_data &#x304C;&#x672A;&#x5165;&#x529B;&#x306E;&#x5834;&#x5408;&#x306F;NONE &#x3068;&#x3057;&#x3066;&#x6271;&#x3046;
 		const type_data = table_info_record.type.match(/[^(]+/);
 		const type = type_data ? type_data[0] : &quot;NONE&quot;;
-		const dflt_value = table_info_record.dflt_value;
+		// &#x672A;&#x5B9A;&#x7FA9;&#x306A;&#x3089; null &#x5B58;&#x5728;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F; &apos;0&apos; &#x306E;&#x3088;&#x3046;&#x306B; &apos; &#x3067;&#x56F2;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x3002;
+		let default_value = table_info_record.dflt_value;
+		if(default_value !== null) {
+			// &#x9664;&#x53BB;&#x3059;&#x308B;
+			if(/^&apos;.*&apos;$/.test(default_value)) {
+				default_value = default_value.match(/^&apos;(.*)&apos;$/)[1];
+			} 
+		}
+		const dflt_value = default_value;
 		const is_not_null = table_info_record.notnull !== 0;
 		const size_data = table_info_record.type.match(/\(([0-9]+)\)/);
 		const size = size_data ? Number.parseInt(size_data[1], 10) : -1;
