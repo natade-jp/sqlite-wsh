@@ -226,7 +226,15 @@ export default class SQLite3Type {
 		}
 		else if(this.normalized_type === &quot;datetime&quot;) {
 			const date = new Date(x);
-			return date.getTime().toString();
+			const date_text = Format.textf(&quot;%04d-%02d-%02d %02d:%02d:%02d&quot;,
+				date.getUTCFullYear(),
+				date.getUTCMonth() + 1,
+				date.getUTCDate(),
+				date.getUTCHours(),
+				date.getUTCMinutes(),
+				date.getUTCSeconds()
+			);
+			return &quot;&apos;&quot; + date_text + &quot;&apos;&quot;;
 		}
 		console.log(&quot;Error : toSQLDataFromJSData &quot; + x);
 		return &quot;null&quot;;
