@@ -81,14 +81,14 @@ declare class SQLite3IF {
      *
      * @param {string} sql_type 作成する SQL `select`, `count` など
      * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など
-     * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など
+     * @param {Object<string, null|number|boolean>} [select] 選択 `{ A : 1 }` など
      * @param {Object<string, any>} [setdata] 設定値 `{ A : 1 }` など
      * @returns {string}
      */
     createSQL(sql_type: string, where?: {
         [key: string]: any;
     }, select?: {
-        [key: string]: number;
+        [key: string]: null | number | boolean;
     }, setdata?: {
         [key: string]: any;
     }): string;
@@ -101,13 +101,13 @@ declare class SQLite3IF {
     /**
      * レコードを調べる
      * @param {Object<string, any>} [where_record]
-     * @param {Object<string, number>} [is_show]
+     * @param {Object<string, null|number|boolean>} [is_show]
      * @returns {Object<string, any>[]|null}
      */
     find(where_record?: {
         [key: string]: any;
     }, is_show?: {
-        [key: string]: number;
+        [key: string]: null | number | boolean;
     }): any;
     /**
      * レコードを挿入する
@@ -188,11 +188,11 @@ declare class SQLite3Schema {
     }): string;
     /**
      * `select文`の対象を作成する
-     * @param {Object<string, any>} select_column_obj
+     * @param {Object<string, null|number|boolean>} select_column_obj
      * @returns {string} `aaa, bbb, ccc`
      */
     createSelectColumnSQL(select_column_obj: {
-        [key: string]: any;
+        [key: string]: null | number | boolean;
     }): string;
     /**
      * `insert文` の中身を作成する

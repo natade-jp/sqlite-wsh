@@ -100,7 +100,7 @@ export default class SQLite3IF {
 	 * 
 	 * @param {string} sql_type &#x4F5C;&#x6210;&#x3059;&#x308B; SQL `select`, `count` &#x306A;&#x3069;
 	 * @param {Object&lt;string, any&gt;} [where] &#x6761;&#x4EF6;&#x6587; `{ A : {$gte : 20} }` &#x306A;&#x3069;
-	 * @param {Object&lt;string, number&gt;} [select] &#x9078;&#x629E; `{ A : 1 }` &#x306A;&#x3069;
+	 * @param {Object&lt;string, null|number|boolean&gt;} [select] &#x9078;&#x629E; `{ A : 1 }` &#x306A;&#x3069;
 	 * @param {Object&lt;string, any&gt;} [setdata] &#x8A2D;&#x5B9A;&#x5024; `{ A : 1 }` &#x306A;&#x3069;
 	 * @returns {string}
 	 */
@@ -138,11 +138,13 @@ export default class SQLite3IF {
 		}
 		if(where) {
 			const where_sql = this.schema.createWhereSQL(where);
-			if(!where_sql) {
+			if(where_sql === null) {
 				console.log(&quot;Error : createWhereSQL&quot;);
 				return null;
 			}
-			sql_text += &quot; &quot; + where_sql;
+			else if(where_sql.length) {
+				sql_text += &quot; &quot; + where_sql;
+			}
 		}
 		return sql_text + &quot;;&quot;;
 	}
@@ -169,7 +171,7 @@ export default class SQLite3IF {
 	/**
 	 * &#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x8ABF;&#x3079;&#x308B;
 	 * @param {Object&lt;string, any&gt;} [where_record]
-	 * @param {Object&lt;string, number&gt;} [is_show]
+	 * @param {Object&lt;string, null|number|boolean&gt;} [is_show]
 	 * @returns {Object&lt;string, any&gt;[]|null}
 	 */
 	find(where_record, is_show) {

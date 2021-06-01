@@ -115,7 +115,15 @@ export default class SQLite3Schema {
 	 * @returns {string} `where (a = 1) and (b = 1)`
 	 */
 	createWhereSQL(where_obj) {
-		if(where_obj === undefined) {
+		if((where_obj === undefined) || (where_obj === null)) {
+			return "";
+		}
+		let where_obj_size = 0;
+		// データがない場合は全て表示
+		for(const key in where_obj) {
+			where_obj_size++;
+		}
+		if(where_obj_size === 0) {
 			return "";
 		}
 
@@ -170,7 +178,7 @@ export default class SQLite3Schema {
 
 					if(value_type === "object") {
 
-						// 型情報にあった場合は、以下の用になる
+						// 型情報にあった場合は、以下のようになる
 						//  { money: { $gt: 30 } }
 						/**
 						 * @type {Object<string, string>}
@@ -239,7 +247,7 @@ export default class SQLite3Schema {
 
 	/**
 	 * `select文`の対象を作成する
-	 * @param {Object<string, any>} select_column_obj
+	 * @param {Object<string, null|number|boolean>} select_column_obj
 	 * @returns {string} `aaa, bbb, ccc`
 	 */
 	createSelectColumnSQL(select_column_obj) {
@@ -247,7 +255,22 @@ export default class SQLite3Schema {
 		 * @type {string[]}
 		 */
 		const column_array = [];
-		if(select_column_obj === undefined) {
+		let is_all_select = false;
+		let select_column_obj_size = 0;
+		// データがない場合は全て表示
+		if((select_column_obj === undefined) || (select_column_obj === null)) {
+			is_all_select = true;
+		}
+		else {
+			for(const key in select_column_obj) {
+				select_column_obj_size++;
+			}
+		}
+		// セレクト対象がない場合も全て表示
+		if(select_column_obj_size === 0) {
+			is_all_select = true;
+		}
+		if(is_all_select) {
 			// 全選択
 			column_array.push("rowid");
 			for(const key in this.types) {
@@ -256,11 +279,12 @@ export default class SQLite3Schema {
 		}
 		else {
 			for(const key in select_column_obj) {
-				if(!(key in this.types)) {
-					console.log("Error : column " + key);
-					continue;
-				}
 				if(select_column_obj[key]) {
+					// 表示設定されているにも関わらず列に存在しない場合はエラーを表示
+					if(!(key in this.types)) {
+						console.log("Error : column " + key);
+						continue;
+					}
 					column_array.push(key);
 				}
 			}

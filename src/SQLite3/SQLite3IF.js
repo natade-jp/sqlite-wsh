@@ -57,7 +57,7 @@ export default class SQLite3IF {
 	 * 
 	 * @param {string} sql_type 作成する SQL `select`, `count` など
 	 * @param {Object<string, any>} [where] 条件文 `{ A : {$gte : 20} }` など
-	 * @param {Object<string, number>} [select] 選択 `{ A : 1 }` など
+	 * @param {Object<string, null|number|boolean>} [select] 選択 `{ A : 1 }` など
 	 * @param {Object<string, any>} [setdata] 設定値 `{ A : 1 }` など
 	 * @returns {string}
 	 */
@@ -95,11 +95,13 @@ export default class SQLite3IF {
 		}
 		if(where) {
 			const where_sql = this.schema.createWhereSQL(where);
-			if(!where_sql) {
+			if(where_sql === null) {
 				console.log("Error : createWhereSQL");
 				return null;
 			}
-			sql_text += " " + where_sql;
+			else if(where_sql.length) {
+				sql_text += " " + where_sql;
+			}
 		}
 		return sql_text + ";";
 	}
@@ -126,7 +128,7 @@ export default class SQLite3IF {
 	/**
 	 * レコードを調べる
 	 * @param {Object<string, any>} [where_record]
-	 * @param {Object<string, number>} [is_show]
+	 * @param {Object<string, null|number|boolean>} [is_show]
 	 * @returns {Object<string, any>[]|null}
 	 */
 	find(where_record, is_show) {

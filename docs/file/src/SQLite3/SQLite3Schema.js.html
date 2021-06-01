@@ -158,7 +158,15 @@ export default class SQLite3Schema {
 	 * @returns {string} `where (a = 1) and (b = 1)`
 	 */
 	createWhereSQL(where_obj) {
-		if(where_obj === undefined) {
+		if((where_obj === undefined) || (where_obj === null)) {
+			return &quot;&quot;;
+		}
+		let where_obj_size = 0;
+		// &#x30C7;&#x30FC;&#x30BF;&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x5168;&#x3066;&#x8868;&#x793A;
+		for(const key in where_obj) {
+			where_obj_size++;
+		}
+		if(where_obj_size === 0) {
 			return &quot;&quot;;
 		}
 
@@ -213,7 +221,7 @@ export default class SQLite3Schema {
 
 					if(value_type === &quot;object&quot;) {
 
-						// &#x578B;&#x60C5;&#x5831;&#x306B;&#x3042;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x7528;&#x306B;&#x306A;&#x308B;
+						// &#x578B;&#x60C5;&#x5831;&#x306B;&#x3042;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;
 						//  { money: { $gt: 30 } }
 						/**
 						 * @type {Object&lt;string, string&gt;}
@@ -282,7 +290,7 @@ export default class SQLite3Schema {
 
 	/**
 	 * `select&#x6587;`&#x306E;&#x5BFE;&#x8C61;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;
-	 * @param {Object&lt;string, any&gt;} select_column_obj
+	 * @param {Object&lt;string, null|number|boolean&gt;} select_column_obj
 	 * @returns {string} `aaa, bbb, ccc`
 	 */
 	createSelectColumnSQL(select_column_obj) {
@@ -290,7 +298,22 @@ export default class SQLite3Schema {
 		 * @type {string[]}
 		 */
 		const column_array = [];
-		if(select_column_obj === undefined) {
+		let is_all_select = false;
+		let select_column_obj_size = 0;
+		// &#x30C7;&#x30FC;&#x30BF;&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x5168;&#x3066;&#x8868;&#x793A;
+		if((select_column_obj === undefined) || (select_column_obj === null)) {
+			is_all_select = true;
+		}
+		else {
+			for(const key in select_column_obj) {
+				select_column_obj_size++;
+			}
+		}
+		// &#x30BB;&#x30EC;&#x30AF;&#x30C8;&#x5BFE;&#x8C61;&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x3082;&#x5168;&#x3066;&#x8868;&#x793A;
+		if(select_column_obj_size === 0) {
+			is_all_select = true;
+		}
+		if(is_all_select) {
 			// &#x5168;&#x9078;&#x629E;
 			column_array.push(&quot;rowid&quot;);
 			for(const key in this.types) {
@@ -299,11 +322,12 @@ export default class SQLite3Schema {
 		}
 		else {
 			for(const key in select_column_obj) {
-				if(!(key in this.types)) {
-					console.log(&quot;Error : column &quot; + key);
-					continue;
-				}
 				if(select_column_obj[key]) {
+					// &#x8868;&#x793A;&#x8A2D;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306B;&#x3082;&#x95A2;&#x308F;&#x3089;&#x305A;&#x5217;&#x306B;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x30A8;&#x30E9;&#x30FC;&#x3092;&#x8868;&#x793A;
+					if(!(key in this.types)) {
+						console.log(&quot;Error : column &quot; + key);
+						continue;
+					}
 					column_array.push(key);
 				}
 			}
